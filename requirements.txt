@@ -1,0 +1,4 @@
+Babel
+Django==3.2
+Pillow
+psycopg2-binary
