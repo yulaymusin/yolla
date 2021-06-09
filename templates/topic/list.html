@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% load select_category_in_topic_form from category %}{% select_category_in_topic_form as categories_dict %}
+{% include 'common/if_messages.html' %}
+<form>
+	<input type="hidden" name="paginate_by" value="{{ paginate_by }}">
+	<div class="form-elements select-element">
+		<select name="category" id="id_category">
+			<option value="">---------</option>
+			{% for key1, item1 in categories_dict.items %}
+				<option value="{{ item1.0.id }}" disabled>{{ item1.0.name }}</option>
+				{% for key2, item2 in item1.1.items %}
+					<option value="{{ item2.0.id }}"{% if filter_by_category == item2.0.id %} selected{% endif %}>- {{ item2.0.name }}</option>
+				{% endfor %}
+			{% endfor %}
+		</select>
+		<div class="select-arrow"></div>
+	</div>
+	<button type="submit" class="btn">Filter by category</button>
+</form>
+<div class="line"></div>
+<table class="tbl bordered">
+	<thead>
+		<tr>
+			<th class="text-center">Created</th>
+			<th class="text-center">Updated</th>
+			<th class="text-center">Published</th>
+			<th class="text-center">Category</th>
+			<th class="text-center">Name in English</th>
+			<th class="text-center">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for element in object_list %}
+			<tr>
+				<td class="text-center">{{ element.created|default:''|date:'Y-m-d H:i' }}</td>
+				<td class="text-center">{{ element.updated|default:''|date:'Y-m-d H:i' }}</td>
+				<td class="text-center">{% if element.published is True %}&#10004;{% else %}&#10008;{% endif %} {{ element.published }}</td>
+				<td>{{ element.category }}</td>
+				<td>{{ element }}</td>
+				<td class="text-center">
+					<a href="{% url 'topic:edit' pk=element.pk %}">Edit</a><br>
+					<a href="{% url 'letter:new' topic_slug=element.slug %}">Letter</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'common/pagination.html' %}
+{% endblock content %}

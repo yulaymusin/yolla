@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+{% load select_category_in_topic_form from category %}{% select_category_in_topic_form as categories_dict %}
+{% include 'common/if_messages.html' %}
+{% include 'common/if_form.errors.html' %}
+<form method="post">
+	{% csrf_token %}
+	{% for field in form %}
+		<div class="form-elements">
+			{% if field.auto_id == 'id_published' %}
+				<label class="form-check-radio toggle-check">
+					{{ field }}
+					<span class="toggle-check-box"></span>
+					<span class="toggle-check-text">{{ field.label }}</span>
+				</label>
+			{% elif field.auto_id == 'id_category' %}
+				<label for="id_category">{{ field.label }}</label>
+				<div class="select-element">
+					<select name="category" id="id_category">
+						<option value="">---------</option>
+						{% for key1, item1 in categories_dict.items %}
+							<option value="{{ item1.0.id }}" disabled>{{ item1.0.name }}</option>
+							{% for key2, item2 in item1.1.items %}
+								<option value="{{ item2.0.id }}"{% if object.category_id == item2.0.id %} selected{% endif %}>- {{ item2.0.name }}</option>
+							{% endfor %}
+						{% endfor %}
+					</select>
+					<div class="select-arrow"></div>
+				</div>
+			{% else %}
+				<label for="{{ field.auto_id }}">{{ field.label }}</label>
+				{{ field }}
+			{% endif %}
+		</div>
+	{% endfor %}
+	<button type="submit" class="btn">Save</button>
+</form>
+{% endblock %}
