@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'forumcorona.common',
     'forumcorona.category',
     'forumcorona.topic',
-    'forumcorona.letter',
+    'forumcorona.opinion',
     'forumcorona.search',
     'forumcorona.article',
     'forumcorona.jumbotron',

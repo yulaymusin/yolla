@@ -11,7 +11,7 @@ urlpatterns = i18n_patterns(
     url(r'^participants/', include('forumcorona.participant.urls')),
     url(r'^categories/', include('forumcorona.category.urls', namespace='category')),
     url(r'^topics/', include('forumcorona.topic.urls', namespace='topic')),
-    url(r'^letters/', include('forumcorona.letter.urls', namespace='letter')),
+    url(r'^opinions/', include('forumcorona.opinion.urls', namespace='opinion')),
     url(r'^searches/', include('forumcorona.search.urls', namespace='search')),
     url(r'^articles/', include('forumcorona.article.urls', namespace='article')),
     url(r'^jumbotron/', include('forumcorona.jumbotron.urls', namespace='jumbotron')),

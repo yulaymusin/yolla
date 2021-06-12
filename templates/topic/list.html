@@ -40,7 +40,7 @@
 				<td>{{ element }}</td>
 				<td class="text-center">
 					<a href="{% url 'topic:edit' pk=element.pk %}">Edit</a><br>
-					<a href="{% url 'letter:new' topic_slug=element.slug %}">Letter</a>
+					<a href="{% url 'opinion:new' topic_slug=element.slug %}">Opinion</a>
 				</td>
 			</tr>
 		{% endfor %}

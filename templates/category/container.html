@@ -5,7 +5,7 @@
 	{% for key2, item2 in item1.1.items %}
 		<div class="c-h3 red"><a href="{% url 'topic:category' category_slug=item2.0.slug %}">{{ item2.0.name }}</a></div>
 		{% for item3 in item2.1 %}
-			<div class="c-h4 gray"><a href="{% url 'letter:topic' topic_slug=item3.slug %}">{{ item3.name }}</a></div>
+			<div class="c-h4 gray"><a href="{% url 'opinion:topic' topic_slug=item3.slug %}">{{ item3.name }}</a></div>
 		{% endfor %}
 		<div class="c-h4 gray"><a href="{% url 'topic:category' category_slug=item2.0.slug %}">{% trans "more topics" %}...</a></div>
 	{% endfor %}
