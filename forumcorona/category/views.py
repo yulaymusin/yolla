@@ -8,10 +8,10 @@ from forumcorona.topic.models import get_topics_grouped_by_category_id
 from . import models as m
 
 
-class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGenericView, mix.ListViewContextPaginated, ListView):
+class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ListViewContextPaginated, ListView):
     model = m.Category
     template_name = 'category/list.html'
-    context = {
+    extra_context = {
         'label': 'Categories',
     }
 
@@ -19,26 +19,26 @@ class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGeneric
         return super().get_queryset().select_related('root')
 
 
-class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGenericView, mix.MsgInFormValid, CreateView):
+class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, CreateView):
     model = m.Category
     fields = ('order_by_this', 'slug', 'root', 'show_in_top_nav',
               'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
     template_name = 'category/form.html'
     success_url = reverse_lazy('category:list')
     success_message = 'New category: done.'
-    context = {
+    extra_context = {
         'label': 'New category',
     }
 
 
-class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGenericView, mix.MsgInFormValid, UpdateView):
+class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, UpdateView):
     model = m.Category
     fields = ('order_by_this', 'slug', 'root', 'show_in_top_nav',
               'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
     template_name = 'category/form.html'
     success_url = reverse_lazy('category:list')
     success_message = 'Category edited.'
-    context = {
+    extra_context = {
         'label': 'Edit category',
     }
 
@@ -81,4 +81,7 @@ def container(request, slug):
     categories_topics = {
         category_dict['id']: (category_dict, subcategories)
     }
-    return render(request, 'category/container.html', {'categories_topics': categories_topics, 'label': category_dict['name']})
+    return render(request, 'category/container.html', {
+        'categories_topics': categories_topics,
+        'label': category_dict['name'],
+    })

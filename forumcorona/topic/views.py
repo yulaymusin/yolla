@@ -30,7 +30,7 @@ class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ListViewContextPa
         return qs.select_related('category')
 
 
-class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGenericView, mix.MsgInFormValid, CreateView):
+class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, CreateView):
     model = m.Topic
     fields = ('slug', 'published', 'category',
               'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name',
@@ -39,12 +39,12 @@ class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGenericV
     template_name = 'topic/form.html'
     success_url = reverse_lazy('topic:list')
     success_message = 'New topic: done.'
-    context = {
+    extra_context = {
         'label': 'New topic',
     }
 
 
-class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGenericView, mix.MsgInFormValid, UpdateView):
+class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, UpdateView):
     model = m.Topic
     fields = ('slug', 'published', 'category',
               'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name',
@@ -53,7 +53,7 @@ class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ContextForGeneric
     template_name = 'topic/form.html'
     success_url = reverse_lazy('topic:list')
     success_message = 'Topic edited.'
-    context = {
+    extra_context = {
         'label': 'Edit topic',
     }
 
