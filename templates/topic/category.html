@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-{% load lang from language %}
-	{% for element in object_list %}
-		<div class="home-h2 blue"><a href="{% url 'opinion:topic' topic_slug=element.slug %}">{{ element|lang:'_name' }}</a></div>
-		<div class="contrast">{{ element|lang:'_description'|safe }}</div>
-	{% endfor %}
+{% load language_code from language %}
+{% for element in object_list %}
+	<div class="home-h2 blue"><a href="{% url 'opinion:topic' topic_slug=element.slug %}">{{ element|language_code:'_name' }}</a></div>
+	<div class="contrast">{{ element|language_code:'_description'|safe }}</div>
+{% endfor %}
 {% include 'common/pagination.html' %}
 {% endblock content %}
