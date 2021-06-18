@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 ('ar_description', models.CharField(blank=True, max_length=500, verbose_name='Description in Arabic')),
                 ('fr_description', models.CharField(blank=True, max_length=500, verbose_name='Description in French')),
                 ('ru_description', models.CharField(blank=True, max_length=500, verbose_name='Description in Russian')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='category.category', verbose_name='Category')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='category.category')),
             ],
             options={
                 'db_table': 'topic',

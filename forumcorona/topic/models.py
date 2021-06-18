@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from forumcorona.common import sql_custom as sql
 from forumcorona.common.language import lang
 from forumcorona.category.models import Category
@@ -15,23 +14,23 @@ class Topic(models.Model):
 
     slug = models.SlugField()
     published = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, models.PROTECT, verbose_name=_('Category'))
+    category = models.ForeignKey(Category, models.PROTECT)
 
-    en_name = models.CharField(_('Name in English'), max_length=200)
-    zh_hans_name = models.CharField(_('Name in Chinese Simplified'), max_length=200, blank=True)
-    zh_hant_name = models.CharField(_('Name in Chinese Traditional'), max_length=200, blank=True)
-    es_name = models.CharField(_('Name in Spanish'), max_length=200, blank=True)
-    ar_name = models.CharField(_('Name in Arabic'), max_length=200, blank=True)
-    fr_name = models.CharField(_('Name in French'), max_length=200, blank=True)
-    ru_name = models.CharField(_('Name in Russian'), max_length=200, blank=True)
+    en_name = models.CharField('Name in English', max_length=200)
+    zh_hans_name = models.CharField('Name in Chinese Simplified', max_length=200, blank=True)
+    zh_hant_name = models.CharField('Name in Chinese Traditional', max_length=200, blank=True)
+    es_name = models.CharField('Name in Spanish', max_length=200, blank=True)
+    ar_name = models.CharField('Name in Arabic', max_length=200, blank=True)
+    fr_name = models.CharField('Name in French', max_length=200, blank=True)
+    ru_name = models.CharField('Name in Russian', max_length=200, blank=True)
 
-    en_description = models.CharField(_('Description in English'), max_length=500)
-    zh_hans_description = models.CharField(_('Description in Chinese Simplified'), max_length=500, blank=True)
-    zh_hant_description = models.CharField(_('Description in Chinese Traditional'), max_length=500, blank=True)
-    es_description = models.CharField(_('Description in Spanish'), max_length=500, blank=True)
-    ar_description = models.CharField(_('Description in Arabic'), max_length=500, blank=True)
-    fr_description = models.CharField(_('Description in French'), max_length=500, blank=True)
-    ru_description = models.CharField(_('Description in Russian'), max_length=500, blank=True)
+    en_description = models.CharField('Description in English', max_length=500)
+    zh_hans_description = models.CharField('Description in Chinese Simplified', max_length=500, blank=True)
+    zh_hant_description = models.CharField('Description in Chinese Traditional', max_length=500, blank=True)
+    es_description = models.CharField('Description in Spanish', max_length=500, blank=True)
+    ar_description = models.CharField('Description in Arabic', max_length=500, blank=True)
+    fr_description = models.CharField('Description in French', max_length=500, blank=True)
+    ru_description = models.CharField('Description in Russian', max_length=500, blank=True)
 
     def __str__(self):
         return self.en_name
