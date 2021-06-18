@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
 from forumcorona.settings_prod import SECRET_KEY, DATABASES, TEAM_EMAILS, SERVER_EMAIL, DEFAULT_FROM_EMAIL, ADMINS, \
-    MANAGERS, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_PORT, TEAM_EMAILS
+    MANAGERS, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_PORT, TEAM_EMAILS, \
+    PROTOCOL, DOMAIN, SITE_NAME
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
@@ -40,6 +41,7 @@ MIDDLEWARE = [
 
     'django.middleware.locale.LocaleMiddleware',
     'forumcorona.common.middlewares.TimezoneMiddleware',
+    'forumcorona.common.middlewares.LanguageMiddleware',
 ]
 ROOT_URLCONF = 'forumcorona.urls'
 TEMPLATES = [
@@ -89,13 +91,13 @@ AUTH_PASSWORD_VALIDATORS = [
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 LANGUAGE_CODE = 'en'
 LANGUAGES = (
-    ('en', 'English'),
-    ('zh-hans', 'Chinese Simplified'),
-    ('zh-hant', 'Chinese Traditional'),
-    ('es', 'Spanish'),
-    ('ar', 'Arabic'),
-    ('fr', 'French'),
-    ('ru', 'Russian'),
+    ('en', 'English'),  # English
+    ('zh-hans', '简体中文'),  # Chinese Simplified
+    ('zh-hant', '繁體中文'),  # Chinese Traditional
+    ('es', 'Español'),  # Spanish
+    ('ar', 'العربيّة'),  # Arabic
+    ('fr', 'Français'),  # French
+    ('ru', 'Русский'),  # Russian
 )
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -111,7 +113,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 FILE_UPLOAD_PERMISSIONS = 0o644
-# Redirect to home URL after login
+
 LOGIN_REDIRECT_URL = '/participants/profile'
 LOGIN_URL = '/participants/login'
 

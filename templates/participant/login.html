@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+{% include 'common/if_form.errors.html' %}
+<form method="post">
+	{% csrf_token %}
+	<div class="form-elements">
+		{{ form.username.label_tag }}
+		{{ form.username }}
+	</div>
+	<div class="form-elements">
+		{{ form.password.label_tag }}
+		{{ form.password }}
+	</div>
+	<button type="submit" class="btn primary">{% trans 'Log in' %}</button>
+	<input type="hidden" name="next" value="{% url 'common:page_home' %}">
+</form>
+<div class="line"></div>
+{% trans 'Lost password?' %} <a href="{% url 'participant:password_reset' %}">{% trans 'Password reset' %}</a><br>
+{% trans 'No username and password?' %} <a href="{% url 'participant:signup' %}">{% trans 'Sign up' %}</a>
+{% endblock %}

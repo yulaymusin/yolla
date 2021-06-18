@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+{% include 'common/if_form.errors.html' %}
+<form method="post">
+	{% csrf_token %}
+	{% for field in form %}
+		<div class="form-elements">
+			{{ field.label_tag }}
+			{{ field }}
+
+			{% if field.help_text %}
+				<div class="text-muted">{{ field.help_text|safe }}</div>
+			{% endif %}
+			{% for error in field.errors %}
+				<div class="text-secondary">{{ error }}</div>
+			{% endfor %}
+		</div>
+	{% endfor %}
+	<button type="submit" class="btn primary">{% trans 'Sign up' %}</button>
+	<button type="reset" class="btn">{% trans 'Reset' %}</button>
+	<input type="hidden" name="time_zone" value="UTC" id="time_zone">
+</form>
+<div class="line"></div>
+{% trans 'Already have a username and password?' %} <a href="{% url 'participant:login' %}">{% trans 'Log in' %}</a>
+{% endblock %}
