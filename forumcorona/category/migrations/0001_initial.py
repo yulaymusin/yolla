@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('ar_name', models.CharField(blank=True, max_length=200, verbose_name='Name in Arabic')),
                 ('fr_name', models.CharField(blank=True, max_length=200, verbose_name='Name in French')),
                 ('ru_name', models.CharField(blank=True, max_length=200, verbose_name='Name in Russian')),
-                ('root', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='category.category', verbose_name='Root category')),
+                ('apex', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='category.category')),
             ],
             options={
                 'db_table': 'category',

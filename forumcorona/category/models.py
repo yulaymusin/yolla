@@ -8,7 +8,7 @@ class Category(models.Model):
 
     order_by_this = models.PositiveSmallIntegerField(null=True, blank=True)
     slug = models.SlugField()
-    root = models.ForeignKey('self', models.PROTECT, null=True, blank=True, verbose_name='Root category')
+    apex = models.ForeignKey('self', models.PROTECT, null=True, blank=True)
     show_in_top_nav = models.BooleanField(default=False)
 
     en_name = models.CharField('Name in English', max_length=200)

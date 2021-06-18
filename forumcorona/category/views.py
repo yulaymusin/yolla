@@ -16,12 +16,12 @@ class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ListViewContextPa
     }
 
     def get_queryset(self):
-        return super().get_queryset().select_related('root')
+        return super().get_queryset().select_related('apex')
 
 
 class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, CreateView):
     model = m.Category
-    fields = ('order_by_this', 'slug', 'root', 'show_in_top_nav',
+    fields = ('order_by_this', 'slug', 'apex', 'show_in_top_nav',
               'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
     template_name = 'category/form.html'
     success_url = reverse_lazy('category:list')
@@ -33,7 +33,7 @@ class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, Cr
 
 class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, UpdateView):
     model = m.Category
-    fields = ('order_by_this', 'slug', 'root', 'show_in_top_nav',
+    fields = ('order_by_this', 'slug', 'apex', 'show_in_top_nav',
               'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
     template_name = 'category/form.html'
     success_url = reverse_lazy('category:list')
@@ -44,7 +44,7 @@ class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, U
 
 
 def container(request, slug):
-    category = get_object_or_404(m.Category, slug=slug, root=None)
+    category = get_object_or_404(m.Category, slug=slug, apex=None)
     # categories_topics = {
     #     2: ('Second category', {
     #         6: ('Subcategory 1 of second category', [
@@ -58,10 +58,10 @@ def container(request, slug):
     category_dict = {
         'id': category.id,
         'slug': category.slug,
-        'root': category.root,
+        'apex': category.apex,
         'name': eval('category.' + lang('_name')),
     }
-    subcategories_values = m.Category.objects.filter(root=category).values('id', 'slug', lang('_name'))
+    subcategories_values = m.Category.objects.filter(apex=category).values('id', 'slug', lang('_name'))
     the_subcategories = {}
     categories_of_topics = []
     for subcategory in subcategories_values:

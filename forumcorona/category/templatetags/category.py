@@ -22,12 +22,12 @@ def categories_dict(categories_values):
         the_categories[category['id']] = {
             'id': category['id'],
             'slug': category['slug'],
-            'root': category['root'],
+            'apex': category['apex'],
             'name': category[lang('_name')],
         }
-        categories_pre_tree[category['root']] = {}
+        categories_pre_tree[category['apex']] = {}
     for key, item in the_categories.items():
-        categories_pre_tree[item['root']][item['id']] = item
+        categories_pre_tree[item['apex']][item['id']] = item
     categories = {}
     for key1, item1 in categories_pre_tree[None].items():
         subcategory = {}
@@ -42,14 +42,14 @@ def categories_dict(categories_values):
 
 @register.simple_tag
 def categories_for_top_nav():
-    return categories_dict(Category.objects.filter(show_in_top_nav=True).values('id', 'slug', 'root', lang('_name')))
+    return categories_dict(Category.objects.filter(show_in_top_nav=True).values('id', 'slug', 'apex', lang('_name')))
 
 
 @register.simple_tag
-def select_root_in_category_form():
-    return categories_dict(Category.objects.filter(root=None).values('id', 'slug', 'root', lang('_name')))
+def select_apex_in_category_form():
+    return categories_dict(Category.objects.filter(apex=None).values('id', 'slug', 'apex', lang('_name')))
 
 
 @register.simple_tag
 def select_category_in_topic_form():
-    return categories_dict(Category.objects.all().values('id', 'slug', 'root', lang('_name')))
+    return categories_dict(Category.objects.all().values('id', 'slug', 'apex', lang('_name')))

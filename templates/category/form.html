@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-{% load select_root_in_category_form from category %}{% select_root_in_category_form as categories_dict %}
+{% load select_apex_in_category_form from category %}{% select_apex_in_category_form as categories_dict %}
 {% include 'common/if_messages.html' %}
 {% include 'common/if_form.errors.html' %}
 <form method="post">
@@ -13,13 +13,13 @@
 					<span class="toggle-check-box"></span>
 					<span class="toggle-check-text">{{ field.label }}</span>
 				</label>
-			{% elif field.auto_id == 'id_root' %}
-				<label for="id_root">{{ field.label }}</label>
+			{% elif field.auto_id == 'id_apex' %}
+				<label for="id_apex">{{ field.label }}</label>
 				<div class="select-element">
-					<select name="root" id="id_root">
+					<select name="apex" id="id_apex">
 						<option value="">---------</option>
 						{% for key1, item1 in categories_dict.items %}
-							<option value="{{ item1.0.id }}"{% if object.root_id == item1.0.id %} selected{% endif %}>{{ item1.0.name }}</option>
+							<option value="{{ item1.0.id }}"{% if object.apex_id == item1.0.id %} selected{% endif %}>{{ item1.0.name }}</option>
 						{% endfor %}
 					</select>
 					<div class="select-arrow"></div>
