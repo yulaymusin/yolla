@@ -1,6 +1,7 @@
 from django import template
+from django.db.models import F
 from forumcorona.category.models import Category
-from forumcorona.common.language import lang
+from forumcorona.common.utils import lang
 
 register = template.Library()
 
@@ -18,13 +19,7 @@ def categories_dict(categories_values):
     the_categories = {}
     categories_pre_tree = {}
     for category in categories_values:
-        # the_categories[category['id']] = category
-        the_categories[category['id']] = {
-            'id': category['id'],
-            'slug': category['slug'],
-            'apex': category['apex'],
-            'name': category[lang('_name')],
-        }
+        the_categories[category['id']] = category
         categories_pre_tree[category['apex']] = {}
     for key, item in the_categories.items():
         categories_pre_tree[item['apex']][item['id']] = item
@@ -42,14 +37,14 @@ def categories_dict(categories_values):
 
 @register.simple_tag
 def categories_for_top_nav():
-    return categories_dict(Category.objects.filter(show_in_top_nav=True).values('id', 'slug', 'apex', lang('_name')))
+    return categories_dict(Category.objects.filter(show_in_top_nav=True).values('id', 'slug', 'apex', name=F(lang('_name')),))
 
 
 @register.simple_tag
-def select_apex_in_category_form():
-    return categories_dict(Category.objects.filter(apex=None).values('id', 'slug', 'apex', lang('_name')))
+def select_apex_in_form():
+    return categories_dict(Category.objects.filter(apex=None).values('id', 'slug', 'apex', name=F('en_name'),))
 
 
 @register.simple_tag
-def select_category_in_topic_form():
-    return categories_dict(Category.objects.all().values('id', 'slug', 'apex', lang('_name')))
+def select_category_in_other_apps_form():
+    return categories_dict(Category.objects.all().values('id', 'slug', 'apex', name=F('en_name'),))

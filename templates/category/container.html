@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% load i18n %}
 {% block content %}
+{% load i18n %}
 {% for key1, item1 in categories_topics.items %}
 	{% for key2, item2 in item1.1.items %}
 		<div class="c-h3 red"><a href="{% url 'topic:category' category_slug=item2.0.slug %}">{{ item2.0.name }}</a></div>

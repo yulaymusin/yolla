@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import F
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from forumcorona.common import mixins as mix
-from forumcorona.common.language import lang
+from forumcorona.common.utils import lang
 from . import models as m
 
 
@@ -27,7 +28,7 @@ class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ListViewContextPa
                 self.category_id = int(category)
         except ValueError:
             pass
-        return qs.select_related('category')
+        return qs.values('id', 'created', 'updated', 'slug', 'published', 'en_name', category_en_name=F('category_id__en_name'),)
 
 
 class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, CreateView):
@@ -44,7 +45,7 @@ class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, Cr
     }
 
 
-class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, UpdateView):
+class Update(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, UpdateView):
     model = m.Topic
     fields = ('slug', 'published', 'category',
               'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name',
@@ -52,28 +53,32 @@ class Edit(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, U
               'fr_description', 'ru_description')
     template_name = 'topic/form.html'
     success_url = reverse_lazy('topic:list')
-    success_message = 'Topic edited.'
+    success_message = 'Topic updated.'
     extra_context = {
-        'label': 'Edit topic',
+        'label': 'Update topic',
     }
 
 
 class Category(mix.ListViewContextPaginated, ListView):
     model = m.Topic
     template_name = 'topic/category.html'
-    category = None
+    category_values = None
 
     def dispatch(self, request, *args, **kwargs):
-        self.category = get_object_or_404(m.Category, slug=kwargs.get('category_slug'))
+        self.category_values = get_object_or_404(
+            m.Category.objects.values('id', apex_slug=F('apex_id__slug'), apex_name=F('apex_id__'+lang('_name')), name=F(lang('_name')),),
+            slug=kwargs.get('category_slug')
+        )
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'label': eval('self.category.' + lang('_name')),
+            'label': self.category_values['name'],
+            'category': self.category_values,
         })
         return context
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(category=self.category, published=True).values('slug', lang('_name'), lang('_description'))
+        qs = super().get_queryset().filter(category_id=self.category_values['id'], published=True)
+        return qs.values('slug', name=F(lang('_name')), description=F(lang('_description')),)

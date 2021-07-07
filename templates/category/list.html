@@ -5,7 +5,7 @@
 	<thead>
 		<tr>
 			<th class="text-center">Order by this</th>
-			<th class="text-center">Apex</th>
+			<th class="text-center">Apex name in English</th>
 			<th class="text-center">Show in top nav</th>
 			<th class="text-center">Name in English</th>
 			<th class="text-center">Actions</th>
@@ -15,13 +15,13 @@
 		{% for element in object_list %}
 			<tr>
 				<td class="text-center">{{ element.order_by_this|default:'' }}</td>
-				<td>{{ element.apex|default:'' }}</td>
+				<td>{{ element.apex_en_name|default:'' }}</td>
 				<td class="text-center">{% if element.show_in_top_nav is True %}&#10004;{% else %}&#10008;{% endif %} {{ element.show_in_top_nav }}</td>
-				<td>{{ element }}</td>
-				<td class="text-center"><a href="{% url 'category:edit' pk=element.pk %}">Edit</a></td>
+				<td>{{ element.en_name }}</td>
+				<td class="text-center"><a href="{% url 'category:update' pk=element.id %}">Update</a></td>
 			</tr>
 		{% endfor %}
 	</tbody>
 </table>
 {% include 'common/pagination.html' %}
-{% endblock content %}
+{% endblock %}
