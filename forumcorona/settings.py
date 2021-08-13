@@ -1,8 +1,7 @@
 import os
 from pathlib import Path
-from forumcorona.settings_prod import SECRET_KEY, DATABASES, TEAM_EMAILS, SERVER_EMAIL, DEFAULT_FROM_EMAIL, ADMINS, \
-    MANAGERS, EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_PORT, TEAM_EMAILS, \
-    PROTOCOL, DOMAIN, SITE_NAME
+from forumcorona.settings_production import SECRET_KEY, DATABASES, SERVER_EMAIL, DEFAULT_FROM_EMAIL, ADMINS, MANAGERS, \
+    EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_PORT, PROTOCOL, DOMAIN, SITE_NAME
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
@@ -57,6 +56,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -113,8 +113,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 FILE_UPLOAD_PERMISSIONS = 0o644
+FILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.TemporaryFileUploadHandler', ]
 
-LOGIN_REDIRECT_URL = '/participants/profile'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/participants/login'
 
 if DEBUG is False:
@@ -173,4 +174,3 @@ else:
     }
 
 AUTH_USER_MODEL = 'participant.Participant'
-UPLOADING_FILE_MAX_SIZE = ('10000 kB (10 MB)', 10000 * 1024)

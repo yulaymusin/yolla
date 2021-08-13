@@ -13,7 +13,6 @@
 		{{ form.password }}
 	</div>
 	<button type="submit" class="btn primary">{% trans 'Log in' %}</button>
-	<input type="hidden" name="next" value="{% url 'common:page_home' %}">
 </form>
 <div class="line"></div>
 {% trans 'Lost password?' %} <a href="{% url 'participant:password_reset' %}">{% trans 'Password reset' %}</a><br>
