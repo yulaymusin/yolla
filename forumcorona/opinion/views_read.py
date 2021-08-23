@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView
 from forumcorona.common import mixins as mix
 from forumcorona.common.utils import lang
+from forumcorona.article.models import get_article_for_context
+from forumcorona.jumbotron.models import get_jumbotron_for_context
 from .views import FilterByTopicAndStatusMixin
 from . import models as m
 
@@ -130,6 +132,8 @@ class Topic(mix.ListViewContextPaginated, ListView):
             'label': self.topic_values['name'],
             'l2': self.l2,
             'topic': self.topic_values,
+            'article': get_article_for_context(self.request.user, self.request.META['HTTP_USER_AGENT'], topic_id_only=self.topic_values['id']),
+            'jumbotron': get_jumbotron_for_context(self.request.user, topic_id_only=self.topic_values['id']),
         })
         return context
 

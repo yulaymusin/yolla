@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'common/if_messages.html' %}
+<div class="alert info">
+	<div class="alert-title clearfix">
+		<i class="alert-icon alert-tri-white text-info"></i>
+		<span>Status: {{ article_verbose_status }}</span>
+	</div>
+	Mobile: <b>{% if article.mobile is True %}&#10004;{% else %}&#10008;{% endif %}</b><br>
+	Show in page home: <b>{% if article.page_home is True %}&#10004;{% else %}&#10008;{% endif %}</b><br>
+	Category name in English: <b>{{ article.category_en_name|default:'&#10008;' }}</b><br>
+	Topic name in English: <b>{{ article.topic_en_name|default:'&#10008;' }}</b><br>
+	<a href="{% url 'article:update' pk=article_id %}">Update this article</a>
+</div>
+
+<h3>Content in English</h3>
+<div class="call-out info">{{ article.en_content|safe }}</div>
+<h3>Content in Chinese Simplified</h3>
+<div class="call-out info">{{ article.zh_hans_content|safe }}</div>
+<h3>Content in Chinese Traditional</h3>
+<div class="call-out info">{{ article.zh_hant_content|safe }}</div>
+<h3>Content in Spanish</h3>
+<div class="call-out info">{{ article.es_content|safe }}</div>
+<h3>Content in Arabic</h3>
+<div class="call-out info">{{ article.ar_content|safe }}</div>
+<h3>Content in French</h3>
+<div class="call-out info">{{ article.fr_content|safe }}</div>
+<h3>Content in Russian</h3>
+<div class="call-out info">{{ article.ru_content|safe }}</div>
+
+<a href="{% url 'article:update' pk=article_id %}" class="btn info">Update this article</a>
+{% endblock %}

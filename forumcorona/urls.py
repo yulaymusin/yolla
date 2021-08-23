@@ -14,7 +14,7 @@ urlpatterns = i18n_patterns(
     re_path(r'^opinions/', include('forumcorona.opinion.urls', namespace='opinion')),
     re_path(r'^searches/', include('forumcorona.search.urls', namespace='search')),
     re_path(r'^articles/', include('forumcorona.article.urls', namespace='article')),
-    re_path(r'^jumbotron/', include('forumcorona.jumbotron.urls', namespace='jumbotron')),
+    re_path(r'^jumbotrons/', include('forumcorona.jumbotron.urls', namespace='jumbotron')),
 )
 urlpatterns += [
     path('sitemap.xml', sitemap_xml, name='sitemap_xml'),

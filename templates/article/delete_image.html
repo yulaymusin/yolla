@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+{% load readable_file_size from utils %}
+<h4>Are you sure you want to permanently delete this image from the server storage?</h4>
+<h5><a href="{{ MEDIA_URL }}{{ image.image }}" target="_blank">{{ image.label }}</a> [{{ image.size|readable_file_size }}]</h5>
+<form method="post">
+	{% csrf_token %}
+	<input type="submit" class="btn primary" value="Delete">
+	<a href="{% url 'article:upload_images' %}{% if request.GET.table == '1' %}?list=1{% endif %}" class="btn">Go back</a>
+</form>
+{% endblock %}

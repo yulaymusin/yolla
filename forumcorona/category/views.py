@@ -6,6 +6,8 @@ from django.views.generic import ListView, CreateView, UpdateView
 from forumcorona.common import mixins as mix
 from forumcorona.common.utils import lang
 from forumcorona.topic.models import get_topics_grouped_by_category_id
+from forumcorona.article.models import get_article_for_context
+from forumcorona.jumbotron.models import get_jumbotron_for_context
 from . import models as m
 
 
@@ -74,4 +76,6 @@ def container(request, slug):
     return render(request, 'category/container.html', {
         'label': category_values['name'],
         'categories_topics': categories_topics,
+        'article': get_article_for_context(request.user, request.META['HTTP_USER_AGENT'], category_id_only=category_values['id']),
+        'jumbotron': get_jumbotron_for_context(request.user, category_id_only=category_values['id']),
     })

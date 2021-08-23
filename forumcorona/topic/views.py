@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from forumcorona.common import mixins as mix
 from forumcorona.common.utils import lang
+from forumcorona.article.models import get_article_for_context
+from forumcorona.jumbotron.models import get_jumbotron_for_context
 from . import models as m
 
 
@@ -76,6 +78,9 @@ class Category(mix.ListViewContextPaginated, ListView):
         context.update({
             'label': self.category_values['name'],
             'category': self.category_values,
+            'article': get_article_for_context(self.request.user, self.request.META['HTTP_USER_AGENT'],
+                                               category_id_only=self.category_values['id']),
+            'jumbotron': get_jumbotron_for_context(self.request.user, category_id_only=self.category_values['id']),
         })
         return context
 

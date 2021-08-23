@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+{% load readable_file_size from utils %}
+{% include 'common/if_messages.html' %}
+<div class="breadcrumbs">
+	<a href="{% url 'article:list' %}">Articles</a> / Upload images
+</div>
+<div id="images">
+	{% if request.GET.list != '1' %}
+		<a href="?list=1" class="btn btn-xs" style="float: right;">Show images as a list</a>
+		<h4>Images</h4>
+		<table class="tbl bordered">
+			<thead>
+				<tr>
+					<th class="text-center">Actions</th>
+					<th class="text-center">Image file name</th>
+					<th class="text-center">Image</th>
+					<th class="text-center">Image file size</th>
+					<th class="text-center">Image HTML tag</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for image in images %}
+				<tr>
+					<td class="text-center">
+						<a onclick="copyImageHTMLTagToClipboard('{{ image.id }}');" class="tooltip tip-right">
+							Copy image tag<span class="tip" id="copy_img_tip_{{ image.id }}">Copy image HTML tag to clipboard</span>
+						</a><br>
+						<a href="{% url 'article:delete_image' media_pk=image.id %}">Delete</a>
+					</td>
+					<td><a href="{{ MEDIA_URL }}{{ image.image }}" target="_blank">{{ image.label }}</a></td>
+					<td class="text-center"><a href="{{ MEDIA_URL }}{{ image.image }}" target="_blank"><img src="{{ MEDIA_URL }}{{ image.image }}"></a></td>
+					<td class="text-center">{{ image.size|readable_file_size }}</td>
+					<td><input id="image_html_tag_{{ image.id }}" value="&lt;img src=&quot;[MEDIA_URL]{{ image.image }}&quot;&gt;"></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<a href="?" class="btn btn-xs" style="float: right;">Show images as a table</a>
+		<h4>Images</h4>
+		<ul>
+		{% for image in images %}
+			<li><a href="{{ MEDIA_URL }}{{ image.image }}" target="_blank">{{ image.label }}</a> [{{ image.size|readable_file_size }}] (<a href="{% url 'article:delete_image' media_pk=image.id %}?list=1">Delete</a>)</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+</div>
+
+<h3>Upload images</h3>
+<div id="csrf_token" value="{{ csrf_token }}"></div>
+<div class="form-elements">
+	<input type="file" id="upload_images" accept="{% for fn_ext in allowed_filename_extensions %}.{{ fn_ext }},{% endfor %}" multiple>
+</div>
+<div id="images_list"></div>
+<div class="loading-bar" id="loading_bar"><div class="bar" style="width: 0%"></div></div>
+<div class="alert danger text-white" id="upload_images_error" f_max_size="{{ file_max_size }}">
+	<div class="alert-title clearfix">
+		<i class="alert-icon alert-tri-white text-danger"></i>
+		<span>Requirements for uploading images</span>
+	</div>
+The size of each file should not exceed {{ file_max_size|readable_file_size }}.<br>
+Only supported types of files.
+</div>
+<button id="upload_btn" class="btn primary">Upload</button>
+{% endblock %}

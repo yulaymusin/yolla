@@ -1,0 +1,20 @@
+<div class="col-5 call-out primary">
+	{% if article.l2_content %}
+		<div class="tab-elements line-tabs">
+			<input type="radio" id="line-tab-1" name="line-tabs-elements" checked>
+			<input type="radio" id="line-tab-2" name="line-tabs-elements">
+			<div class="responsive-tabs">
+				<div class="tab-btns">
+					<label for="line-tab-1" class="btn">{{ article.l1_name }}</label>
+					<label for="line-tab-2" class="btn">{{ article.l2_name }}</label>
+				</div>
+			</div>
+			<div class="tab-info-wrap">
+				<div class="tab-info">{{ article.l1_content|safe }}</div>
+				<div class="tab-info">{{ article.l2_content|safe }}</div>
+			</div>
+		</div>
+	{% else %}
+		{{ article.l1_content|safe }}
+	{% endif %}
+</div>

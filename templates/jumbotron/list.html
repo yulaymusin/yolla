@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'common/if_messages.html' %}
+<table class="tbl bordered">
+	<thead>
+		<tr>
+			<th class="text-center">Show in page home</th>
+			<th class="text-center">Category name in English</th>
+			<th class="text-center">Topic name in English</th>
+			<th class="text-center">Content in English [:100]</th>
+			<th class="text-center">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for element in object_list %}
+			<tr>
+				<td class="text-center">{% if element.page_home is True %}&#10004;{% else %}&#10008;{% endif %} {{ element.page_home }}</td>
+				<td>{{ element.category_en_name|default:'' }}</td>
+				<td>{{ element.topic_en_name|default:'' }}</td>
+				<td>{{ element.en_content|truncatechars:100 }}</td>
+				<td class="text-center">
+					<a href="{% url 'jumbotron:update' pk=element.id %}">Update</a><br>
+					<a href="{% url 'jumbotron:read' pk=element.id %}">Read</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'common/pagination.html' %}
+{% endblock %}
