@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% include 'common/if_messages.html' %}
+{% include 'common/if_form.errors.html' %}
+<div class="breadcrumbs">
+	<a href="{% url 'category:container' slug=opinion.topic_category_apex_slug %}">{{ opinion.topic_category_apex_name }}</a> / <a href="{% url 'topic:category' category_slug=opinion.topic_category_slug %}">{{ opinion.topic_category_name }}</a> / <a href="{% url 'opinion:topic' topic_slug=opinion.topic_slug %}">{{ opinion.topic_name }}</a> / {{ label }}
+</div>
+{% if previous_reply %}
+	<div class="alert info">
+		<div class="alert-title clearfix">
+			<i class="alert-icon alert-tri-white text-info"></i>
+			<span>{% trans 'You have already replied' %}</span>
+		</div>
+		{% trans 'Status' %}: {{ previous_reply_verbose_status }}
+	</div>
+{% endif %}
+<div class="panel">
+	<div class="panel-header">{{ previous_reply.0.publisher_name|default:'' }}<small>{{ previous_reply.0.recorded|default:'' }}</small></div>
+	<div class="panel-body">
+		<blockquote class="text-muted">
+			<span>{% trans 'Reply to' %}: {{ opinion.publisher_name }} <small>({{ opinion.recorded }})</small></span>
+			{{ opinion.text|linebreaks }}
+		</blockquote>
+		{{ previous_reply.0.text|default:''|linebreaks }}
+	</div>
+</div>
+{% if not previous_reply %}
+	{% include 'opinion/reply_edit_form.html' %}
+{% endif %}
+{% endblock %}

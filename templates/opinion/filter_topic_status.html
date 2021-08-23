@@ -1,0 +1,31 @@
+<form class="form-horizontal form-condensed">
+	<div class="flex-grid form-elements">
+		<div class="col-2 col-12-sm"><label for="id_topic">{{ topic_verbose }}:</label></div>
+		<div class="col-10 col-12-sm">
+			<select name="topic" id="id_topic">
+				<option value="">---------</option>
+				{% for key1, item1 in topics_categories.items %}
+					<option disabled>{{ key1 }}</option>
+					{% for key2, item2 in item1.items %}
+						<option value="{{ key2 }}"{% if topic_id == key2 %} selected{% endif %}>- {{ item2 }}</option>
+					{% endfor %}
+				{% endfor %}
+			</select>
+		</div>
+		<div class="col-2 col-12-sm"><label for="id_status">{{ status_verbose }}:</label></div>
+		<div class="col-10 col-12-sm">
+			<select name="status" id="id_status">
+				<option value="">---------</option>
+				{% for key1, item1 in statuses %}
+					<option value="{{ key1 }}"{% if status_id == key1 %} selected{% endif %}>{{ item1 }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="col-10 col-offset-2  col-12-sm col-offset-clear-sm">
+			<input type="submit" class="btn primary" value="{{ apply_btn }}">
+			<a type="reset" class="btn" href="?topic=&status=&paginate_by=">{{ reset_btn }}</a>
+			<input type="hidden" name="paginate_by" value="{{ paginate_by }}">
+		</div>
+	</div>
+</form>
+<div class="line"></div>

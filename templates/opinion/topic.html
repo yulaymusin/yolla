@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% load readable_file_size from utils %}
+<div class="breadcrumbs">
+	<a href="{% url 'category:container' slug=topic.category_apex_slug %}">{{ topic.category_apex_name }}</a> / <a href="{% url 'topic:category' category_slug=topic.category_slug %}">{{ topic.category_name }}</a> / {{ topic.name }}
+</div>
+{% if l2 %}
+	{% for element in object_list %}
+		<div class="panel">
+			<div class="panel-header">{{ element.publisher_name }}<small>{{ element.recorded }}</small>
+				<div class="panel-btn-area clearfix">
+					<a href="{% url 'opinion:reply' reply_to_opinion_pk=element.id %}" class="btn primary glow">{% trans "Reply" %}</a>
+				</div>
+			</div>
+			<div class="panel-body">
+				{% if element.apex_recorded %}
+					<blockquote class="text-muted">
+						<span>{% trans 'Reply to' %}: {{ element.apex_publisher_name }} <small>({{ element.apex_recorded }})</small></span>
+						{{ element.apex_text|linebreaks }}
+					</blockquote>
+				{% endif %}
+				{{ element.l1_text|linebreaks }}<div class="line"></div>
+				<div class="text-success">{{ element.l2_text|linebreaks }}</div>
+				{% if element.documents %}
+					<div class="line"></div>
+					<p><b>{% trans "Documents" %}</b> (<a href="{% url 'opinion:zip_documents' opinion_pk=element.id %}" target="_blank">{% trans "Download documents in ZIP-archive" %}</a>)</p>
+					<ul>
+						{% for document in element.documents %}
+							<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}]</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+{% else %}
+	{% for element in object_list %}
+		<div class="panel">
+			<div class="panel-header">{{ element.publisher_name }}<small>{{ element.recorded }}</small>
+				<div class="panel-btn-area clearfix">
+					<a href="{% url 'opinion:reply' reply_to_opinion_pk=element.id %}" class="btn primary glow">{% trans "Reply" %}</a>
+				</div>
+			</div>
+			<div class="panel-body">
+				{% if element.apex_recorded %}
+					<blockquote class="text-muted">
+						<span>{% trans 'Reply to' %}: {{ element.apex_publisher_name }} <small>({{ element.apex_recorded }})</small></span>
+						{{ element.apex_text|linebreaks }}
+					</blockquote>
+				{% endif %}
+				{{ element.l1_text|linebreaks }}
+				{% if element.documents %}
+					<div class="line"></div>
+					<p><b>{% trans "Documents" %}</b> (<a href="{% url 'opinion:zip_documents' opinion_pk=element.id %}" target="_blank">{% trans "Download documents in ZIP-archive" %}</a>)</p>
+					<ul>
+						{% for document in element.documents %}
+							<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}]</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}
+{% include 'common/pagination.html' %}
+{% endblock %}

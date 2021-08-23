@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+<div class="breadcrumbs">
+	<a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a> / {{ opinion.topic_category_apex_name }} / {{ opinion.topic_category_name }} / {{ opinion.topic_name }}
+</div>
+<div class="panel">
+	<div class="panel-header">{{ opinion.publisher_name }}<small>{{ opinion.recorded }}</small></div>
+	<div class="panel-body">
+		<blockquote class="text-muted">
+			<span>{% trans 'Reply to' %}: {{ opinion.apex_publisher_name }} <small>({{ opinion.apex_recorded }})</small></span>
+			{{ opinion.apex_text|linebreaks }}
+		</blockquote>
+		{{ opinion.text|linebreaks }}
+	</div>
+</div>
+<h4>{% trans 'Are you sure you want to cancel the publication of your reply?' %}</h4>
+<p class="text-muted">{% trans 'Even after cancellation, you can read your reply' %}</p>
+<form method="post">
+	{% csrf_token %}
+	<button type="submit" class="btn primary">{% trans 'Yes' %}</button>
+	<button onclick="window.history.back();" class="btn">{% trans 'Go back' %}</button>
+</form>
+{% endblock %}

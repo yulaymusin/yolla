@@ -1,0 +1,12 @@
+<form method="post">
+	{% csrf_token %}
+	{% for field in form %}
+		{% if field.name|cut:'_text' == l1 or field.name|cut:'_text' == l2 %}
+			<div class="form-elements">
+				{{ field.label_tag }}
+				{{ field }}
+			</div>
+		{% endif %}
+	{% endfor %}
+	<button type="submit" class="btn primary">{{ submit_btn }}</button>
+</form>

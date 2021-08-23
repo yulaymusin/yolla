@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'common/if_messages.html' %}
+{% include 'opinion/filter_topic_status.html' %}
+<table class="tbl bordered">
+	<thead>
+		<tr>
+			<th class="text-center">Recorded</th>
+			<th class="text-center">Updated</th>
+			<th class="text-center">Status</th>
+			<th class="text-center">Publisher</th>
+			<th class="text-center">Topic name in English</th>
+			<th class="text-center">Text in English [:100]</th>
+			<th class="text-center">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for element in object_list %}
+			<tr>
+				<td class="text-center">{{ element.recorded|date:'Y-m-d H:i' }}</td>
+				<td class="text-center">{{ element.updated|date:'Y-m-d H:i' }}</td>
+				<td class="text-center">{{ element.verbose_status }}</td>
+				<td class="text-center">{{ element.publisher_name }}</td>
+				<td class="text-center">{{ element.topic_en_name }}</td>
+				<td>{{ element.en_text|truncatechars:100 }}</td>
+				<td class="text-center">
+					<a href="{% url 'opinion:update' pk=element.id %}">Update</a><br>
+					<a href="{% url 'opinion:read' pk=element.id %}">Read</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'common/pagination.html' %}
+{% endblock %}

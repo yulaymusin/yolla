@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+{% load readable_file_size from utils %}
+{% include 'common/if_messages.html' %}
+<div class="alert info">
+	<div class="alert-title clearfix">
+		<i class="alert-icon alert-tri-white text-info"></i>
+		<span>Status: {{ opinion_verbose_status }}</span>
+	</div>
+	Topic category apex name in English: <b>{{ opinion.topic_category_apex_en_name }}</b><br>
+	Topic category name in English: <b>{{ opinion.topic_category_en_name }}</b><br>
+	Topic name in English: <b>{{ opinion.topic_en_name }}</b><br>
+	Updated: <b>{{ opinion.updated }}</b><br>
+	Reason for rejection: <b>{{ opinion.reason_for_rejection|default:'&#10008;' }}</b><br>
+	<a href="{% url 'opinion:update' pk=opinion_id %}">Update this opinion</a>
+</div>
+<div class="panel">
+	<div class="panel-header">{{ opinion.publisher_name }}<small>{{ opinion.recorded }}</small></div>
+	<div class="panel-body">
+		{% if opinion.apex_recorded %}
+			<blockquote class="text-muted">
+				<span>Reply to: {{ opinion.apex_publisher_name }} <small>({{ opinion.apex_recorded }})</small></span>
+				{{ opinion.apex_en_text|linebreaks }}
+			</blockquote>
+		{% endif %}
+
+		<div class="line"></div>
+		{% if documents %}
+			<p><b>Documents</b> (<a href="{% url 'opinion:zip_documents' opinion_pk=opinion_id %}" target="_blank">Download documents in ZIP-archive</a>)</p>
+			<ul>
+				{% for document in documents %}
+					<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}]</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p><b>No documents</b></p>
+		{% endif %}
+	</div>
+</div>
+
+<h3>Opinion in English</h3>
+<div class="call-out info">{{ opinion.en_text|safe }}</div>
+<h3>Opinion in Chinese Simplified</h3>
+<div class="call-out info">{{ opinion.zh_hans_text|safe }}</div>
+<h3>Opinion in Chinese Traditional</h3>
+<div class="call-out info">{{ opinion.zh_hant_text|safe }}</div>
+<h3>Opinion in Spanish</h3>
+<div class="call-out info">{{ opinion.es_text|safe }}</div>
+<h3>Opinion in Arabic</h3>
+<div class="call-out info">{{ opinion.ar_text|safe }}</div>
+<h3>Opinion in French</h3>
+<div class="call-out info">{{ opinion.fr_text|safe }}</div>
+<h3>Opinion in Russian</h3>
+<div class="call-out info">{{ opinion.ru_text|safe }}</div>
+
+<a href="{% url 'opinion:update' pk=opinion_id %}" class="btn info">Update this opinion</a>
+{% endblock %}

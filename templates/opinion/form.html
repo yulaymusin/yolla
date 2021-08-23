@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+{% load readable_file_size from utils %}
+{% include 'common/if_messages.html' %}
+{% include 'common/if_form.errors.html' %}
+{% if documents is not None and documents %}
+	<p><b>Documents</b> (<a href="{% url 'opinion:zip_documents' opinion_pk=opinion_id %}" target="_blank">Download documents in ZIP-archive</a>)</p>
+	<ul>
+		{% for document in documents %}
+			<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}]</li>
+		{% endfor %}
+	</ul>
+{% elif documents is not None %}
+	<p><b>No documents</b></p>
+{% endif %}
+<div class="alert info">
+	Topic category apex name in English: <b>{{ topic.category_apex_en_name }}</b><br>
+	Topic category name in English: <b>{{ topic.category_en_name }}</b><br>
+	Topic name in English: <b>{{ topic.en_name }}</b> (<a href="{% url 'opinion:topic' topic_slug=topic.slug %}" target="_blank">open</a>)
+</div>
+<form method="post">
+	{% csrf_token %}
+	{% for field in form %}
+		<div class="form-elements">
+			{% if field.auto_id == 'id_status' %}
+				{{ field.label_tag }}
+				<div class="select-element">{{ field }}<div class="select-arrow"></div></div>
+			{% else %}
+				{{ field.label_tag }}
+				{{ field }}
+			{% endif %}
+		</div>
+	{% endfor %}
+	<button type="submit" class="btn primary">Save</button>
+</form>
+{% endblock %}

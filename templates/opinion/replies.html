@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% include 'common/if_messages.html' %}
+{% include 'opinion/filter_topic_status.html' %}
+<table class="tbl bordered">
+	<thead>
+		<tr>
+			<th class="text-center">{% trans "Recorded" %}</th>
+			<th class="text-center">{% trans "Status" %}</th>
+			<th class="text-center">{% trans "Topic name" %}</th>
+			<th class="text-center">{% trans "Text" %} ({% trans "symbols" %} <=200)</th>
+			<th class="text-center" width="135px">{% trans "Actions" %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for element in object_list %}
+			<tr>
+				<td class="text-center">{{ element.recorded }}</td>
+				<td class="text-center">{{ element.verbose_status }}</td>
+				<td class="text-center">{{ element.topic_name }}</td>
+				<td>{{ element.text|truncatechars:200 }}</td>
+				<td class="text-center">
+					<a href="{% url 'opinion:your_reply' pk=element.id %}">{% trans "Read your reply" %}</a><br>
+					{% if element.status == 4 %}
+						<a href="{% url 'opinion:edit' pk=element.id %}">{% trans "Edit" %}</a><br>
+						<a href="{% url 'opinion:attach_documents' opinion_pk=element.id %}">{% trans "Documents" %}</a><br>
+						<a href="{% url 'opinion:cancel' pk=element.id %}">{% trans "Cancel" %}</a>
+					{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% include 'common/pagination.html' %}
+{% endblock %}

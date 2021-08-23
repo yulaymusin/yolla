@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% load readable_file_size from utils %}
+{% include 'common/if_messages.html' %}
+<div class="breadcrumbs">
+	<a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a> / {{ opinion.topic_category_apex_name }} / {{ opinion.topic_category_name }} / {{ opinion.topic_name }}
+</div>
+<div class="panel">
+	<div class="panel-header">{{ opinion.publisher_name }}<small>{{ opinion.recorded }}</small></div>
+	<div class="panel-body">
+		{% if opinion.apex_recorded %}
+			<blockquote class="text-muted">
+				<span>{% trans 'Reply to' %}: {{ opinion.apex_publisher_name }} <small>({{ opinion.apex_recorded }})</small></span>
+				{{ opinion.apex_text|linebreaks }}
+			</blockquote>
+		{% endif %}
+		{{ opinion.text|linebreaks }}
+		<div class="line"></div>
+		<div id="documents">
+			<h4>{% trans 'Documents' %}</h4>
+			<ul>
+			{% for document in documents %}
+				<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}] (<a href="{% url 'opinion:delete_document' attachment_pk=document.id %}">{% trans 'Delete' %}</a>)</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h3>{% trans 'Attach documents' %}</h3>
+<div id="csrf_token" value="{{ csrf_token }}"></div>
+<div class="form-elements">
+	<input type="file" id="attach_documents" accept="{% for fn_ext in allowed_filename_extensions %}.{{ fn_ext }},{% endfor %}" multiple>
+</div>
+<div id="documents_list"></div>
+<div class="loading-bar" id="loading_bar"><div class="bar" style="width: 0%"></div></div>
+<div class="alert danger text-white" id="attach_documents_error" f_max_size="{{ file_max_size }}" f_max_total="{{ max_total_documents }}" delete="{% trans 'Delete' %}">
+	<div class="alert-title clearfix">
+		<i class="alert-icon alert-tri-white text-danger"></i>
+		<span>{% trans 'Requirements for documents' %}</span>
+	</div>
+{% blocktrans with f_max_size=file_max_size|readable_file_size f_max_total=max_total_documents %}
+The size of each file should not exceed {{ f_max_size }}.<br>
+Maximum number of attached documents including previously attached - {{ f_max_total }}.<br>
+Only supported types of files.
+{% endblocktrans %}
+</div>
+<button id="attach_btn" class="btn primary">{% trans 'Attach' %}</button>
+{% endblock %}
