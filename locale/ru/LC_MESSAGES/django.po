@@ -1,0 +1,243 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Important discussions"
+msgstr "Важные обсуждения"
+
+msgid "more topics"
+msgstr "больше тем"
+
+msgid "Reply in English"
+msgstr "Ответ на английском языке"
+
+msgid "Reply in Chinese"
+msgstr "Ответ на китайском языке"
+
+msgid "Reply in Spanish"
+msgstr "Ответ на испанском языке"
+
+msgid "Reply in Arabic"
+msgstr "Ответ на арабском языке"
+
+msgid "Reply in French"
+msgstr "Ответ на французском языке"
+
+msgid "Reply in Russian"
+msgstr "Ответ на русском языке"
+
+msgid "Published"
+msgstr "Опубликованный"
+
+msgid "Preparing to publish"
+msgstr "Подготовка к публикации"
+
+msgid "Accepted by moderator"
+msgstr "Принято модератором"
+
+msgid "Sent for publication"
+msgstr "Отправлено для публикации"
+
+msgid "Rejected by moderator"
+msgstr "Отклонено модератором"
+
+msgid "Canceled to publish"
+msgstr "Отменено для публикации"
+
+msgid "Documents of your reply"
+msgstr "Документы Вашего ответа"
+
+msgid "Document deleted."
+msgstr "Документ удален."
+
+msgid "Delete document"
+msgstr "Удалить документ"
+
+msgid "Your replies"
+msgstr "Ваши ответы"
+
+msgid "Filter by topic"
+msgstr "Фильтр по теме"
+
+msgid "Filter by status"
+msgstr "Фильтр по статусу"
+
+msgid "Apply filters"
+msgstr "Применение фильтров"
+
+msgid "Reset"
+msgstr "Сброс"
+
+msgid "Your reply"
+msgstr "Ваш ответ"
+
+msgid "Reply"
+msgstr "Ответ"
+
+msgid ""
+"Before your reply is accepted by moderator, you can edit, unpublish and "
+"manage documents."
+msgstr "Прежде чем ваш ответ будет принят модератором, вы можете редактировать, отменять публикацию и управлять документами."
+
+msgid "Edits saved."
+msgstr "Правки сохранены."
+
+msgid "Editing your reply"
+msgstr "Редактирование вашего ответа"
+
+msgid "Publication of your reply has been canceled."
+msgstr "Публикация вашего ответа отменена."
+
+msgid "Canceling the publication of your reply"
+msgstr "Отмена публикации вашего ответа"
+
+msgid "Username"
+msgstr "Логин"
+
+msgid ""
+"Required. Used for log in paired with a password. 50 characters or fewer. "
+"Letters, digits and @/./+/-/_ only."
+msgstr ""
+"Обязательное поле. Используется для входа в систему в паре с паролем. Не более 50 символов. Только буквы, цифры и символы @/./+/-/_."
+
+msgid "A participant with that username already exists."
+msgstr "Участник с таким именем уже существует."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid ""
+"Required. Used for signing replies. 50 characters or fewer. Letters, digits "
+"and @/./+/-/_ only."
+msgstr ""
+"Обязательное поле. Используется для подписания ответов. Не более 50 символов. Только буквы, цифры и символы @/./+/-/_."
+
+msgid "Another participant signs replies with this name."
+msgstr "Другой участник подписывает ответы этим именем."
+
+msgid "Required. Used for password recovery."
+msgstr "Обязательное поле. Используется для восстановления пароля."
+
+msgid "Time zone"
+msgstr "Часовой пояс"
+
+msgid "Primary language"
+msgstr "Основной язык"
+
+msgid "Secondary language"
+msgstr "Дополнительный язык"
+
+msgid "About"
+msgstr "Описание"
+
+msgid "Sign up"
+msgstr "Регистрация"
+
+msgid "Info and settings saved."
+msgstr "Информация и настройки сохранены."
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "Next"
+msgstr "Следующий"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "Dark"
+msgstr "Темный"
+
+msgid "Classic"
+msgstr "Классический"
+
+msgid "Reply to"
+msgstr "Ответить на"
+
+msgid "Documents"
+msgstr "Документы"
+
+msgid "Attach documents"
+msgstr "Прикрепить документы"
+
+msgid "Requirements for documents"
+msgstr "Требования к документам"
+
+#, python-format
+msgid ""
+"\n"
+"The size of each file should not exceed <bdi>%(f_max_size)s</bdi>.<br>\n"
+"Maximum number of attached documents including previously attached - "
+"%(f_max_total)s.<br>\n"
+"Only supported types of files.\n"
+msgstr ""
+"\n"
+"Размер каждого файла не должен превышать <bdi>%(f_max_size)s</bdi>.<br>\n"
+"Максимальное количество прилагаемых документов, включая ранее приложенные - "
+"%(f_max_total)s.<br>\n"
+"Только поддерживаемые типы файлов.\n"
+
+msgid "Attach"
+msgstr "Прикреплять"
+
+msgid "Are you sure you want to cancel the publication of your reply?"
+msgstr "Вы уверены, что хотите отменить публикацию своего ответа?"
+
+msgid "Even after cancellation, you can read your reply"
+msgstr "Даже после отмены вы можете прочитать свой ответ"
+
+msgid "Go back"
+msgstr "Вернуться"
+
+msgid "Are you sure you want to delete this document?"
+msgstr "Вы уверены, что хотите удалить этот документ?"
+
+msgid "Editing is only available for the \"Sent for publication\" status"
+msgstr "Редактирование доступно только для статуса \"Отправлено для публикации\""
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Recorded"
+msgstr "Записанный"
+
+msgid "Topic name"
+msgstr "Название темы"
+
+msgid "symbols"
+msgstr "символы"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Read your reply"
+msgstr "Прочтите ваш ответ"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "You have already replied"
+msgstr "Вы уже ответили"
+
+msgid "Download documents in ZIP-archive"
+msgstr "Скачать документы в ZIP-архиве"
+
+msgid "Reason for rejection"
+msgstr "Причина отказа"
+
+msgid "Forgotten your password?"
+msgstr "Забыли пароль?"
+
+msgid "No username and password?"
+msgstr "Нет логина и пароля?"
+
+msgid "Already have a username and password?"
+msgstr "У вас уже есть логин и пароль?"

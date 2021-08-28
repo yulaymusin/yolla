@@ -1,0 +1,242 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Important discussions"
+msgstr "مناقشات هامة"
+
+msgid "more topics"
+msgstr "المزيد من المواضيع"
+
+msgid "Reply in English"
+msgstr "الرد باللغة الإنجليزية"
+
+msgid "Reply in Chinese"
+msgstr "الرد باللغة الصينية"
+
+msgid "Reply in Spanish"
+msgstr "الرد باللغة الإسبانية"
+
+msgid "Reply in Arabic"
+msgstr "الرد باللغة العربية"
+
+msgid "Reply in French"
+msgstr "الرد بالفرنسية"
+
+msgid "Reply in Russian"
+msgstr "الرد باللغة الروسية"
+
+msgid "Published"
+msgstr "نشر"
+
+msgid "Preparing to publish"
+msgstr "التحضير للنشر"
+
+msgid "Accepted by moderator"
+msgstr "مقبول من قبل المشرف"
+
+msgid "Sent for publication"
+msgstr "أرسلت للنشر"
+
+msgid "Rejected by moderator"
+msgstr "مرفوض من قبل المشرف"
+
+msgid "Canceled to publish"
+msgstr "تم الإلغاء للنشر"
+
+msgid "Documents of your reply"
+msgstr "وثائق ردك"
+
+msgid "Document deleted."
+msgstr "تم حذف المستند."
+
+msgid "Delete document"
+msgstr "حذف المستند"
+
+msgid "Your replies"
+msgstr "ردودك"
+
+msgid "Filter by topic"
+msgstr "تصفية حسب الموضوع"
+
+msgid "Filter by status"
+msgstr "التصفية حسب الحالة"
+
+msgid "Apply filters"
+msgstr "تطبيق عوامل التصفية"
+
+msgid "Reset"
+msgstr "اعاده تعيين"
+
+msgid "Your reply"
+msgstr "ردك"
+
+msgid "Reply"
+msgstr "أجاب"
+
+msgid ""
+"Before your reply is accepted by moderator, you can edit, unpublish and "
+"manage documents."
+msgstr "قبل قبول ردك من قبل المشرف، يمكنك تحرير المستندات، أو إلغاء نشرها، أو إدارتها."
+
+msgid "Edits saved."
+msgstr "عمليات التحرير المحفوظة."
+
+msgid "Editing your reply"
+msgstr "تحرير ردك"
+
+msgid "Publication of your reply has been canceled."
+msgstr "تم إلغاء نشر ردك."
+
+msgid "Canceling the publication of your reply"
+msgstr "إلغاء نشر ردك"
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid ""
+"Required. Used for log in paired with a password. 50 characters or fewer. "
+"Letters, digits and @/./+/-/_ only."
+msgstr "مطلوب. يستخدم لتسجيل الدخول مقترنا بكلمة مرور. 50 رمزاً أو أقل، مكونة من حروف وأرقام و @/./+/-/_ فقط"
+
+msgid "A participant with that username already exists."
+msgstr "هناك مشارك موجود مسبقاً بهذا الاسم."
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid ""
+"Required. Used for signing replies. 50 characters or fewer. Letters, digits "
+"and @/./+/-/_ only."
+msgstr ""
+"مطلوب. يستخدم لتوقيع الردود. 50 رمزاً أو أقل، مكونة من حروف وأرقام و @/./+/-/_ فقط"
+
+msgid "Another participant signs replies with this name."
+msgstr "مشارك آخر يوقع الردود بهذا الاسم."
+
+msgid "Required. Used for password recovery."
+msgstr "مطلوب. يستخدم لاسترداد كلمة المرور."
+
+msgid "Time zone"
+msgstr "المنطقة الزمنية"
+
+msgid "Primary language"
+msgstr "اللغة الأساسية"
+
+msgid "Secondary language"
+msgstr "اللغة الثانوية"
+
+msgid "About"
+msgstr "وصف"
+
+msgid "Sign up"
+msgstr "التسجيل"
+
+msgid "Info and settings saved."
+msgstr "المعلومات والإعدادات المحفوظة."
+
+msgid "Profile"
+msgstr "ملف تعريف"
+
+msgid "Previous"
+msgstr "سابق"
+
+msgid "Page"
+msgstr "صفحة"
+
+msgid "Next"
+msgstr "مقبل"
+
+msgid "Theme"
+msgstr "موضوع"
+
+msgid "Dark"
+msgstr "داكن"
+
+msgid "Classic"
+msgstr "كلاسيكي"
+
+msgid "Reply to"
+msgstr "الرد على"
+
+msgid "Documents"
+msgstr "الوثائق"
+
+msgid "Attach documents"
+msgstr "إرفاق المستندات"
+
+msgid "Requirements for documents"
+msgstr "متطلبات الوثائق"
+
+#, python-format
+msgid ""
+"\n"
+"The size of each file should not exceed <bdi>%(f_max_size)s</bdi>.<br>\n"
+"Maximum number of attached documents including previously attached - "
+"%(f_max_total)s.<br>\n"
+"Only supported types of files.\n"
+msgstr ""
+"\n"
+"يجب ألا يتجاوز حجم كل ملف <bdi>%(f_max_size)s</bdi> ميغابايت.<br>\n"
+"الحد الأقصى لعدد المستندات المرفقة بما في ذلك المرفقة سابقا - "
+"%(f_max_total)s.<br>\n"
+"أنواع الملفات المعتمدة فقط.\n"
+
+msgid "Attach"
+msgstr "ألحق"
+
+msgid "Are you sure you want to cancel the publication of your reply?"
+msgstr "هل تريد بالتأكيد إلغاء نشر ردك؟"
+
+msgid "Even after cancellation, you can read your reply"
+msgstr "حتى بعد الإلغاء، يمكنك قراءة ردك"
+
+msgid "Go back"
+msgstr "الرجوع للخلف"
+
+msgid "Are you sure you want to delete this document?"
+msgstr "هل تريد بالتأكيد حذف هذا المستند؟"
+
+msgid "Editing is only available for the \"Sent for publication\" status"
+msgstr "التحرير متوفر فقط لحالة \"إرسال للنشر\""
+
+msgid "Status"
+msgstr "حالة"
+
+msgid "Recorded"
+msgstr "تسجيل"
+
+msgid "Topic name"
+msgstr "اسم الموضوع"
+
+msgid "symbols"
+msgstr "حرف او رمز"
+
+msgid "Actions"
+msgstr "أجراءات"
+
+msgid "Read your reply"
+msgstr "اقرأ ردك"
+
+msgid "Edit"
+msgstr "يحرر"
+
+msgid "You have already replied"
+msgstr "لقد قمت بالرد بالفعل"
+
+msgid "Download documents in ZIP-archive"
+msgstr "قم بتنزيل المستندات في أرشيف ZIP"
+
+msgid "Reason for rejection"
+msgstr "سبب الرفض"
+
+msgid "Forgotten your password?"
+msgstr "هل نسيت كلمة المرور؟ "
+
+msgid "No username and password?"
+msgstr "لا اسم المستخدم وكلمة المرور؟"
+
+msgid "Already have a username and password?"
+msgstr "هل لديك اسم مستخدم وكلمة مرور بالفعل؟"

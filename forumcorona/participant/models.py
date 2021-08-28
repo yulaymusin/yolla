@@ -22,9 +22,9 @@ class Participant(AbstractUser):
         _('Name'),
         max_length=50,
         unique=True,
-        help_text=_('Required. Used for signing opinions. 50 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        help_text=_('Required. Used for signing replies. 50 characters or fewer. Letters, digits and @/./+/-/_ only.'),
         validators=[username_validator],
-        error_messages={'unique': _('Another participant signs opinions with this name.'), },
+        error_messages={'unique': _('Another participant signs replies with this name.'), },
     )
     email = models.EmailField(
         _('Email address'),
