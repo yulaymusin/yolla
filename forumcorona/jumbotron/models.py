@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.db.models import F
 from forumcorona.common.utils import lang
@@ -25,7 +26,7 @@ class Jumbotron(models.Model):
 
 def get_jumbotron_for_context(user, category_id_only=None, topic_id_only=None):
     if user.is_authenticated and user.l2:
-        j = Jumbotron.objects.values(l1=F(lang('_content')), l2=F(user.l2 + '_content'),)
+        j = Jumbotron.objects.values(l1=F(lang('_content')), l2=F(user.l2.replace('-', '_') + '_content'),)
     else:
         j = Jumbotron.objects.values_list(lang('_content'), flat=True)
 
@@ -39,7 +40,13 @@ def get_jumbotron_for_context(user, category_id_only=None, topic_id_only=None):
         j = None
 
     if j and user.is_authenticated and user.l2:
-        return {'l1_content': j[0]['l1'], 'l2_content': j[0]['l2'], }
+        jumbotron = {'l1_content': j[0]['l1'], 'l2_content': j[0]['l2'], }
+        for language in settings.LANGUAGES:
+            if language[0] == user.l1:
+                jumbotron.update({'l1_code': language[0], 'l1_dir': 'rtl' if language[0] in settings.RTL_LANGUAGES_CODES else 'ltr'})
+            if language[0] == user.l2:
+                jumbotron.update({'l2_code': language[0], 'l2_dir': 'rtl' if language[0] in settings.RTL_LANGUAGES_CODES else 'ltr'})
+        return jumbotron
     elif j:
         return {'l1_content': j[0]}
 

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="breadcrumbs">
-	<a href="{% url 'category:container' slug=category.apex_slug %}">{{ category.apex_name }}</a> / {{ category.name }}
+	<a href="{% url 'category:container' slug=category.apex_slug %}"><bdi>{{ category.apex_name }}</bdi></a> / <bdi>{{ category.name }}</bdi>
 </div>
 {% for element in object_list %}
-	<div class="home-h2 blue"><a href="{% url 'opinion:topic' topic_slug=element.slug %}">{{ element.name }}</a></div>
+	<div class="home-h2"><a href="{% url 'opinion:topic' topic_slug=element.slug %}" class="text-primary">{{ element.name }}</a></div>
 	<div class="contrast">{{ element.description|safe }}</div>
 {% endfor %}
 {% include 'common/pagination.html' %}

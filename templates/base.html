@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% spaceless %}
+{% load static %}
+{% load i18n %}
+{% load language_dir from utils %}
+{% if user.is_authenticated is False %}{% load languages_settings language_in_url from utils %}{% languages_settings as languages %}{% endif %}
+<html dir="{{ request.LANGUAGE_CODE|language_dir }}" lang="{{ request.LANGUAGE_CODE }}">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<title>{{ label }}</title>
+	<link rel="stylesheet" href="{% static 'purecssframework.css' %}">
+	<link rel="stylesheet" href="{% static 'theme-dark.css' %}">
+	<link rel="stylesheet" href="{% static 'purecssframework-site.css' %}">
+	<link rel="stylesheet" href="{% static 'css.css' %}">
+	<link rel="stylesheet" href="{% static 'custom.css' %}">
+	{% if user.is_authenticated is True and user.is_staff is True %}
+		<link rel="stylesheet" href="{% static 'admin.css' %}">
+	{% endif %}
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="{{ request.COOKIES.theme|default:'' }}" id="body">
+{% include 'common/topbar.html' %}
+<div class="fixed-nav-space" id="top"></div>
+{% if jumbotron.l1_content %}
+	<div class="hero-area">
+		<div class="main-container">
+			<div class="flex-grid ">
+				<div class="col-12">
+					{% if jumbotron.l2_content %}
+						<div dir="{{ article.l1_dir }}" lang="{{ article.l1_code }}">{{ jumbotron.l1_content|safe }}</div>
+						<div dir="{{ article.l2_dir }}" lang="{{ article.l2_code }}">{{ jumbotron.l2_content|safe }}</div>
+					{% else %}
+						{{ jumbotron.l1_content|safe }}
+					{% endif %}
+					{% if user.is_authenticated is False and page_home is True %}
+						<div class="rounded-more-corners">
+							{% for lang in languages %}
+								<a href="/{{ lang.0 }}/" class="btn">{{ lang.1 }}</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+<div class="main-container">
+	<div class="flex-grid">
+		{% if article.l1_content and 'mobile' in request.META.HTTP_USER_AGENT|lower %}{% include 'article/article_content.html' %}{% endif %}
+		<div class="col-{% if article.l1_content %}7{% else %}12{% endif %}">
+			<h1 class="text-center">{{ h1|default:label }}</h1>
+			{% block content %}{% endblock %}
+		</div>
+		{% if article.l1_content and 'mobile' not in request.META.HTTP_USER_AGENT|lower %}{% include 'article/article_content.html' %}{% endif %}
+	</div>
+</div>
+<footer class="text-center">
+	<div class="line"></div>
+	{% if user.is_authenticated is False %}
+		{% for lang in languages %}
+			<a href="{{ lang.0|language_in_url:request.get_full_path }}">{{ lang.1 }}</a>
+		{% endfor %}
+	{% else %}
+		<a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a>
+		<a href="{% url 'participant:password' %}">{% trans 'Change password' %}</a>
+		<a href="{% url 'participant:profile' %}">{% trans 'Profile' %}</a>
+		<a href="{% url 'participant:logout' %}">{% trans 'Log out' %}</a>
+	{% endif %}
+	<br>{% now "Y" %}<a href="https://forumcorona.org" target="_blank">Forumcorona.org</a>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% if user.is_authenticated is True %}
+	{% if '/participants/profile' in request.get_full_path or '/categories/new' in request.get_full_path or '/categories/update' in request.get_full_path or '/topics/new' in request.get_full_path or '/topics/update' in request.get_full_path or '/topics/list' in request.get_full_path or '/opinions/list' in request.get_full_path or '/opinions/replies' in request.get_full_path or '/articles/new' in request.get_full_path or '/articles/update' in request.get_full_path or '/jumbotrons/new' in request.get_full_path or '/jumbotrons/update' in request.get_full_path %}
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				var select2_dir = "{{ request.LANGUAGE_CODE|language_dir }}";
+				$( 'select' ).select2({ dir: select2_dir });  // opinion/list
+			});
+			$(document).on('select2:open', () => { document.querySelector('.select2-search__field').focus(); });
+		</script>
+	{% endif %}
+{% endif %}
+<script src="{% static 'custom.js' %}"></script>
+{% if user.is_authenticated is True and user.is_staff is True %}
+	<script src="{% static 'admin.js' %}"></script>
+{% endif %}
+</body>
+</html>
+{% endspaceless %}

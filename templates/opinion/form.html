@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-{% load readable_file_size from utils %}
+{% load substr_in_str language_dir_form_field readable_file_size from utils %}
 {% include 'common/if_messages.html' %}
 {% include 'common/if_form.errors.html' %}
 {% if documents is not None and documents %}
@@ -25,6 +25,9 @@
 			{% if field.auto_id == 'id_status' %}
 				{{ field.label_tag }}
 				<div class="select-element">{{ field }}<div class="select-arrow"></div></div>
+			{% elif field.name|substr_in_str:'_text' is True %}
+				{{ field.label_tag }}
+				{{ field|language_dir_form_field:'_text' }}
 			{% else %}
 				{{ field.label_tag }}
 				{{ field }}

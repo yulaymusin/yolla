@@ -1,0 +1,97 @@
+{% load static %}
+{% load i18n %}
+{% load categories_for_top_nav from category %}{% categories_for_top_nav as categories_dict %}
+<header class="main-container header fixed">
+	{# <!-- Nav Bar with Logo Area --> #}
+	<div class="flex-grid navbar">
+		{# <!-- Mobile Menu --> #}
+		<input type="checkbox" id="mobileMenu" class="hide">
+		<label id="mobileMenuLabel" class="mobile-menu left-side" for="mobileMenu">
+			<i class="hamburger"></i>
+		</label>
+		<label class="full-screen" for="mobileMenu"></label>
+		{# <!-- /Mobile Menu --> #}
+
+		<div class="col-2 col-12-md logo clearfix">
+			<a href="/{{ request.LANGUAGE_CODE }}/">
+				<span>Forumcorona</span>
+				<img src="{% static 'img/coronavirus.png' %}" title="coronavirus">
+			</a>
+		</div>
+
+		<nav class="col-8 col-12-md navbarright" id="topMenuNav">
+			<div class="navbar-links">
+				{% for key1, item1 in categories_dict.items %}
+					<div class="has-drop-menu hover-menu">{{ item1.0.name }} <i class="arrow-down"></i>
+						<ul class="drop-menu">
+							{% for key2, item2 in item1.1.items %}
+								<li><a href="{% url 'topic:category' category_slug=item2.0.slug %}">{{ item2.0.name }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endfor %}
+			</div>
+		</nav>
+		{# <!-- Second menu --> #}
+		{# <!-- Second Mobile Menu --> #}
+		<input type="checkbox" id="mobileMenu2" class="hide">
+		<label id="mobileMenuLabel2" class="mobile-menu right-side" for="mobileMenu2">
+			<i class="profile"></i>
+		</label>
+		<label class="full-screen" for="mobileMenu2"></label>
+		{# <!-- /Second Mobile Menu --> #}
+		<nav class="col-2 col-12-md text-right" id="topMenuNav2">
+			<div class="navbar-links">
+				<div class="has-drop-menu hover-menu">
+					{% if user.is_authenticated is False %}{% trans 'Log in' %}{% else %}{% trans 'Profile' %}{% endif %} <i class="arrow-down"></i>
+					<ul class="drop-menu drop-menu-left">
+						{% if user.is_authenticated is False %}
+							<li><a href="{% url 'participant:login' %}">{% trans 'Log in' %}</a></li>
+							<li><a href="{% url 'participant:signup' %}">{% trans 'Sign up' %}</a></li>
+						{% else %}
+							<li><a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a></li>
+							<li class="line"></li>
+							<li><a href="{% url 'participant:password' %}">{% trans 'Change password' %}</a></li>
+							<li><a href="{% url 'participant:profile' %}">{% trans 'Profile' %}</a></li>
+							<li><a href="{% url 'participant:logout' %}">{% trans 'Log out' %}</a></li>
+							{% if user.is_staff is True %}
+								<li class="line"></li>
+								<li><a href="{% url 'opinion:list' %}?status=4">Opinions</a></li>
+							{% endif %}
+							{% if user.is_superuser is True %}
+								<li class="line"></li>
+								<li>
+									<a href="{% url 'jumbotron:list' %}">Jumbotrons</a>
+									<a href="{% url 'jumbotron:new' %}">New jumbotron</a>
+								</li>
+								<li>
+									<a href="{% url 'article:list' %}">Articles</a>
+									<a href="{% url 'article:new' %}">New article</a>
+								</li>
+								<li>
+									<a href="{% url 'article:upload_images' %}">Upload images to articles</a>
+								</li>
+								<li class="line"></li>
+								<li>
+									<a href="{% url 'topic:list' %}">Topics</a>
+									<a href="{% url 'topic:new' %}">New topic</a>
+								</li>
+								<li>
+									<a href="{% url 'category:list' %}">Categories</a>
+									<a href="{% url 'category:new' %}">New category</a>
+								</li>
+							{% endif %}
+						{% endif %}
+					</ul>
+				</div>
+				<div class="has-drop-menu hover-menu">{% trans 'Theme' %} <i class="arrow-down"></i>
+					<ul class="drop-menu drop-menu-left">
+						<li><a href="javascript:;" onclick="changeTheme('dark');" class="dark-theme-link"><span></span> {% trans 'Dark' %}</a></li>
+						<li><a href="javascript:;" onclick="changeTheme('classic');" class="classic-theme-link"><span></span> {% trans 'Classic' %}</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{# <!-- /Second menu --> #}
+	</div>
+</header>

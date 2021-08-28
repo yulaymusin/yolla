@@ -86,7 +86,7 @@ def attach_documents(request, opinion_pk):
         for document in attachment_values:
             documents_list.append({
                 'url': settings.MEDIA_URL + document['document'], 'name': document['original_label'], 'size': document['size'],
-                'del_url': reverse_lazy('opinion:delete_document', kwargs={'attachment_pk': document['id']}),
+                'delete_url': reverse_lazy('opinion:delete_document', kwargs={'attachment_pk': document['id']}),
             })
         return JsonResponse(documents_list, safe=False)
 

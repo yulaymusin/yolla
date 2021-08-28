@@ -4,14 +4,14 @@
 {% load readable_file_size from utils %}
 {% include 'common/if_messages.html' %}
 <div class="breadcrumbs">
-	<a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a> / {{ opinion.topic_category_apex_name }} / {{ opinion.topic_category_name }} / {{ opinion.topic_name }}
+	<a href="{% url 'opinion:replies' %}"><bdi>{% trans 'Your replies' %}</bdi></a> / <bdi>{{ opinion.topic_category_apex_name }}</bdi> / <bdi>{{ opinion.topic_category_name }}</bdi> / <bdi>{{ opinion.topic_name }}</bdi>
 </div>
 <div class="panel">
-	<div class="panel-header">{{ opinion.publisher_name }}<small>{{ opinion.recorded }}</small></div>
+	<div class="panel-header"><bdi>{{ opinion.publisher_name }}</bdi><small>{{ opinion.recorded }}</small></div>
 	<div class="panel-body">
 		{% if opinion.apex_recorded %}
 			<blockquote class="text-muted">
-				<span>{% trans 'Reply to' %}: {{ opinion.apex_publisher_name }} <small>({{ opinion.apex_recorded }})</small></span>
+				<span>{% trans 'Reply to' %}: <bdi>{{ opinion.apex_publisher_name }}</bdi><small>({{ opinion.apex_recorded }})</small></span>
 				{{ opinion.apex_text|linebreaks }}
 			</blockquote>
 		{% endif %}
@@ -21,7 +21,7 @@
 			<h4>{% trans 'Documents' %}</h4>
 			<ul>
 			{% for document in documents %}
-				<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}] (<a href="{% url 'opinion:delete_document' attachment_pk=document.id %}">{% trans 'Delete' %}</a>)</li>
+				<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank" dir="auto">{{ document.original_label }}</a> [<bdi>{{ document.size|readable_file_size }}</bdi>] (<a href="{% url 'opinion:delete_document' attachment_pk=document.id %}">{% trans 'Delete' %}</a>)</li>
 			{% endfor %}
 			</ul>
 		</div>
@@ -41,7 +41,7 @@
 		<span>{% trans 'Requirements for documents' %}</span>
 	</div>
 {% blocktrans with f_max_size=file_max_size|readable_file_size f_max_total=max_total_documents %}
-The size of each file should not exceed {{ f_max_size }}.<br>
+The size of each file should not exceed <bdi>{{ f_max_size }}</bdi>.<br>
 Maximum number of attached documents including previously attached - {{ f_max_total }}.<br>
 Only supported types of files.
 {% endblocktrans %}

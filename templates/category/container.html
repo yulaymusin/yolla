@@ -3,11 +3,11 @@
 {% load i18n %}
 {% for key1, item1 in categories_topics.items %}
 	{% for key2, item2 in item1.1.items %}
-		<div class="c-h3 red"><a href="{% url 'topic:category' category_slug=item2.0.slug %}">{{ item2.0.name }}</a></div>
+		<div class="c-h3"><a href="{% url 'topic:category' category_slug=item2.0.slug %}" class="text-secondary">{{ item2.0.name }}</a></div>
 		{% for item3 in item2.1 %}
-			<div class="c-h4 gray"><a href="{% url 'opinion:topic' topic_slug=item3.slug %}">{{ item3.name }}</a></div>
+			<div class="c-h4"><a href="{% url 'opinion:topic' topic_slug=item3.slug %}" class="text-primary">{{ item3.name }}</a></div>
 		{% endfor %}
-		<div class="c-h4 gray"><a href="{% url 'topic:category' category_slug=item2.0.slug %}">{% trans "more topics" %}...</a></div>
+		<div class="c-h4"><a href="{% url 'topic:category' category_slug=item2.0.slug %}" class="text-primary">{% trans "more topics" %}...</a></div>
 	{% endfor %}
 {% endfor %}
 {% endblock %}

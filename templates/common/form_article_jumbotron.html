@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% load select_category_in_other_apps_form from category %}{% select_category_in_other_apps_form as categories_dict %}
+{% load substr_in_str language_dir_form_field from utils %}
+{% include 'common/if_messages.html' %}
+{% include 'common/if_form.errors.html' %}
+<form method="post">
+	{% csrf_token %}
+	{% for field in form %}
+		<div class="form-elements">
+			{% if field.auto_id == 'id_mobile' or field.auto_id == 'id_page_home' %}
+				<label class="form-check-radio toggle-check">
+					{{ field }}
+					<span class="toggle-check-box"></span>
+					<span class="toggle-check-text">{{ field.label }}</span>
+				</label>
+			{% elif field.auto_id == 'id_category' %}
+				{{ field.label_tag }}
+				<select name="category" id="id_category">
+					<option value="">---------</option>
+					{% for key1, item1 in categories_dict.items %}
+						<option value="{{ item1.0.id }}"{% if object.category_id == item1.0.id %} selected{% endif %}>{{ item1.0.name }}</option>
+						{% for key2, item2 in item1.1.items %}
+							<option value="{{ item2.0.id }}"{% if object.category_id == item2.0.id %} selected{% endif %}>- {{ item2.0.name }}</option>
+						{% endfor %}
+					{% endfor %}
+				</select>
+			{% elif field.auto_id == 'id_topic' %}
+				{{ field.label_tag }}
+				<select name="topic" id="id_topic">
+					<option value="">---------</option>
+					{% for key1, item1 in topics_categories.items %}
+						<option disabled>{{ key1 }}</option>
+						{% for key2, item2 in item1.items %}
+							<option value="{{ key2 }}"{% if object.topic_id == key2 %} selected{% endif %}>- {{ item2 }}</option>
+						{% endfor %}
+					{% endfor %}
+				</select>
+			{% elif field.name|substr_in_str:'_content' is True %}
+				{{ field.label_tag }}
+				{{ field|language_dir_form_field:'_content' }}
+			{% else %}
+				{{ field.label_tag }}
+				{{ field }}
+			{% endif %}
+		</div>
+	{% endfor %}
+	<button type="submit" class="btn primary">Save</button>
+</form>
+{% endblock %}

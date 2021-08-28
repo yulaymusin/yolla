@@ -15,11 +15,11 @@
 	<a href="{% url 'opinion:update' pk=opinion_id %}">Update this opinion</a>
 </div>
 <div class="panel">
-	<div class="panel-header">{{ opinion.publisher_name }}<small>{{ opinion.recorded }}</small></div>
+	<div class="panel-header"><bdi>{{ opinion.publisher_name }}</bdi><small>{{ opinion.recorded }}</small></div>
 	<div class="panel-body">
 		{% if opinion.apex_recorded %}
 			<blockquote class="text-muted">
-				<span>Reply to: {{ opinion.apex_publisher_name }} <small>({{ opinion.apex_recorded }})</small></span>
+				<span>Reply to: <bdi>{{ opinion.apex_publisher_name }}</bdi><small>({{ opinion.apex_recorded }})</small></span>
 				{{ opinion.apex_en_text|linebreaks }}
 			</blockquote>
 		{% endif %}
@@ -29,7 +29,7 @@
 			<p><b>Documents</b> (<a href="{% url 'opinion:zip_documents' opinion_pk=opinion_id %}" target="_blank">Download documents in ZIP-archive</a>)</p>
 			<ul>
 				{% for document in documents %}
-					<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}]</li>
+					<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank" dir="auto">{{ document.original_label }}</a> [<bdi>{{ document.size|readable_file_size }}</bdi>]</li>
 				{% endfor %}
 			</ul>
 		{% else %}
@@ -39,19 +39,19 @@
 </div>
 
 <h3>Opinion in English</h3>
-<div class="call-out info">{{ opinion.en_text|safe }}</div>
+<div class="call-out info" dir="ltr" lang="en">{{ opinion.en_text|safe }}</div>
 <h3>Opinion in Chinese Simplified</h3>
-<div class="call-out info">{{ opinion.zh_hans_text|safe }}</div>
+<div class="call-out info" dir="ltr" lang="zh-hans">{{ opinion.zh_hans_text|safe }}</div>
 <h3>Opinion in Chinese Traditional</h3>
-<div class="call-out info">{{ opinion.zh_hant_text|safe }}</div>
+<div class="call-out info" dir="ltr" lang="zh-hant">{{ opinion.zh_hant_text|safe }}</div>
 <h3>Opinion in Spanish</h3>
-<div class="call-out info">{{ opinion.es_text|safe }}</div>
+<div class="call-out info" dir="ltr" lang="es">{{ opinion.es_text|safe }}</div>
 <h3>Opinion in Arabic</h3>
-<div class="call-out info">{{ opinion.ar_text|safe }}</div>
+<div class="call-out info" dir="rtl" lang="ar">{{ opinion.ar_text|safe }}</div>
 <h3>Opinion in French</h3>
-<div class="call-out info">{{ opinion.fr_text|safe }}</div>
+<div class="call-out info" dir="ltr" lang="fr">{{ opinion.fr_text|safe }}</div>
 <h3>Opinion in Russian</h3>
-<div class="call-out info">{{ opinion.ru_text|safe }}</div>
+<div class="call-out info" dir="ltr" lang="ru">{{ opinion.ru_text|safe }}</div>
 
 <a href="{% url 'opinion:update' pk=opinion_id %}" class="btn info">Update this opinion</a>
 {% endblock %}

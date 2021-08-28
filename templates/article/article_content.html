@@ -5,13 +5,13 @@
 			<input type="radio" id="line-tab-2" name="line-tabs-elements">
 			<div class="responsive-tabs">
 				<div class="tab-btns">
-					<label for="line-tab-1" class="btn">{{ article.l1_name }}</label>
-					<label for="line-tab-2" class="btn">{{ article.l2_name }}</label>
+					<label for="line-tab-1" class="btn" dir="{{ article.l1_dir }}" lang="{{ article.l1_code }}">{{ article.l1_name }}</label>
+					<label for="line-tab-2" class="btn" dir="{{ article.l2_dir }}" lang="{{ article.l2_code }}">{{ article.l2_name }}</label>
 				</div>
 			</div>
 			<div class="tab-info-wrap">
-				<div class="tab-info">{{ article.l1_content|safe }}</div>
-				<div class="tab-info">{{ article.l2_content|safe }}</div>
+				<div class="tab-info" dir="{{ article.l1_dir }}" lang="{{ article.l1_code }}">{{ article.l1_content|safe }}</div>
+				<div class="tab-info" dir="{{ article.l2_dir }}" lang="{{ article.l2_code }}">{{ article.l2_content|safe }}</div>
 			</div>
 		</div>
 	{% else %}

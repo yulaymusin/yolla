@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load readable_file_size from utils %}
 <h4>{% trans 'Are you sure you want to delete this document?' %}</h4>
-<h5><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}]</h5>
+<h5><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank" dir="auto">{{ document.original_label }}</a> [<bdi>{{ document.size|readable_file_size }}</bdi>]</h5>
 <form method="post">
 	{% csrf_token %}
 	<input type="submit" class="btn primary" value="{% trans 'Delete' %}">

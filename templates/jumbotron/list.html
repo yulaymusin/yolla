@@ -4,6 +4,7 @@
 <table class="tbl bordered">
 	<thead>
 		<tr>
+			<th class="text-center">ID</th>
 			<th class="text-center">Show in page home</th>
 			<th class="text-center">Category name in English</th>
 			<th class="text-center">Topic name in English</th>
@@ -14,6 +15,7 @@
 	<tbody>
 		{% for element in object_list %}
 			<tr>
+				<td class="text-center">{{ element.id }}</td>
 				<td class="text-center">{% if element.page_home is True %}&#10004;{% else %}&#10008;{% endif %} {{ element.page_home }}</td>
 				<td>{{ element.category_en_name|default:'' }}</td>
 				<td>{{ element.topic_en_name|default:'' }}</td>

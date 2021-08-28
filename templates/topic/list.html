@@ -21,6 +21,7 @@
 <table class="tbl bordered">
 	<thead>
 		<tr>
+			<th class="text-center">ID</th>
 			<th class="text-center">Created</th>
 			<th class="text-center">Updated</th>
 			<th class="text-center">Published</th>
@@ -32,6 +33,7 @@
 	<tbody>
 		{% for element in object_list %}
 			<tr>
+				<td class="text-center">{{ element.id }}</td>
 				<td class="text-center">{{ element.created|default:''|date:'Y-m-d H:i' }}</td>
 				<td class="text-center">{{ element.updated|default:''|date:'Y-m-d H:i' }}</td>
 				<td class="text-center">{% if element.published is True %}&#10004;{% else %}&#10008;{% endif %} {{ element.published }}</td>

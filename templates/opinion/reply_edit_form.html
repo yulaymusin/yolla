@@ -1,10 +1,11 @@
+{% load language_from_field_name language_dir_form_field from utils %}
 <form method="post">
 	{% csrf_token %}
 	{% for field in form %}
-		{% if field.name|cut:'_text' == l1 or field.name|cut:'_text' == l2 %}
+		{% if field.name|language_from_field_name:'_text' == l1 or field.name|language_from_field_name:'_text' == l2 %}
 			<div class="form-elements">
 				{{ field.label_tag }}
-				{{ field }}
+				{{ field|language_dir_form_field:'_text' }}
 			</div>
 		{% endif %}
 	{% endfor %}

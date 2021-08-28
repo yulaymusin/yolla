@@ -50,13 +50,13 @@ class Opinion(models.Model):
     apex = models.ForeignKey('self', models.PROTECT, null=True)
     apex_language = models.CharField(max_length=20)
 
-    en_text = models.TextField('Text in English', db_index=True, blank=True)
-    zh_hans_text = models.TextField('Text in Chinese Simplified', db_index=True, blank=True)
-    zh_hant_text = models.TextField('Text in Chinese Traditional', db_index=True, blank=True)
-    es_text = models.TextField('Text in Spanish', db_index=True, blank=True)
-    ar_text = models.TextField('Text in Arabic', db_index=True, blank=True)
-    fr_text = models.TextField('Text in French', db_index=True, blank=True)
-    ru_text = models.TextField('Text in Russian', db_index=True, blank=True)
+    en_text = models.TextField('Text in English', blank=True)
+    zh_hans_text = models.TextField('Text in Chinese Simplified', blank=True)
+    zh_hant_text = models.TextField('Text in Chinese Traditional', blank=True)
+    es_text = models.TextField('Text in Spanish', blank=True)
+    ar_text = models.TextField('Text in Arabic', blank=True)
+    fr_text = models.TextField('Text in French', blank=True)
+    ru_text = models.TextField('Text in Russian', blank=True)
 
 
 class OpinionAttachment(models.Model):

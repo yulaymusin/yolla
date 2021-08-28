@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% load select_category_in_other_apps_form from category %}{% select_category_in_other_apps_form as categories_dict %}
+{% load substr_in_str language_dir_form_field from utils %}
 {% include 'common/if_messages.html' %}
 {% include 'common/if_form.errors.html' %}
 <form method="post">
@@ -26,6 +27,12 @@
 						{% endfor %}
 					</select>
 				</div>
+			{% elif field.name|substr_in_str:'_name' is True %}
+				{{ field.label_tag }}
+				{{ field|language_dir_form_field:'_name' }}
+			{% elif field.name|substr_in_str:'_description' is True %}
+				{{ field.label_tag }}
+				{{ field|language_dir_form_field:'_description' }}
 			{% else %}
 				{{ field.label_tag }}
 				{{ field }}

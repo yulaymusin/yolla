@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 {% load i18n %}
-{% load readable_file_size from utils %}
+{% load language_dir readable_file_size from utils %}
 {% include 'common/if_messages.html' %}
 <div class="breadcrumbs">
-	<a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a> / {{ opinion.topic_category_apex_name }} / {{ opinion.topic_category_name }} / {{ opinion.topic_name }}
+	<a href="{% url 'opinion:replies' %}"><bdi>{% trans 'Your replies' %}</bdi></a> / <bdi>{{ opinion.topic_category_apex_name }}</bdi> / <bdi>{{ opinion.topic_category_name }}</bdi> / <bdi>{{ opinion.topic_name }}</bdi>
 </div>
 <div class="alert info">
 	<div class="alert-title clearfix">
@@ -14,25 +14,25 @@
 	{% if opinion.status == 6 %}<b>{% trans 'Reason for rejection' %}</b><br>{{ opinion.reason_for_rejection }}{% endif %}
 </div>
 <div class="panel">
-	<div class="panel-header">{{ opinion.publisher_name }}<small>{{ opinion.recorded }}</small></div>
+	<div class="panel-header"><bdi>{{ opinion.publisher_name }}</bdi><small>{{ opinion.recorded }}</small></div>
 	<div class="panel-body">
 		{% if opinion.apex_recorded %}
 			<blockquote class="text-muted">
-				<span>{% trans 'Reply to' %}: {{ opinion.apex_publisher_name }} <small>({{ opinion.apex_recorded }})</small></span>
+				<span>{% trans 'Reply to' %}: <bdi>{{ opinion.apex_publisher_name }}</bdi> <small>({{ opinion.apex_recorded }})</small></span>
 				{{ opinion.apex_text|linebreaks }}
 			</blockquote>
 		{% endif %}
 		{{ opinion.l1_text|linebreaks }}
 		{% if l2 %}
 			<div class="line"></div>
-			<div class="text-success">{{ opinion.l2_text|linebreaks }}</div>
+			<div class="text-success" dir="{{ l2|language_dir }}" lang="{{ l2 }}">{{ opinion.l2_text|linebreaks }}</div>
 		{% endif %}
 		{% if documents %}
 			<div class="line"></div>
 			<p><b>{% trans "Documents" %}</b> (<a href="{% url 'opinion:zip_documents' opinion_pk=opinion_id %}" target="_blank">{% trans "Download documents in ZIP-archive" %}</a>)</p>
 			<ul>
 			{% for document in documents %}
-				<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank">{{ document.original_label }}</a> [{{ document.size|readable_file_size }}]</li>
+				<li><a href="{{ MEDIA_URL }}{{ document.document }}" target="_blank" dir="auto">{{ document.original_label }}</a> [<bdi>{{ document.size|readable_file_size }}</bdi>]</li>
 			{% endfor %}
 			</ul>
 		{% endif %}

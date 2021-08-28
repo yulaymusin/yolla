@@ -5,6 +5,7 @@
 <table class="tbl bordered">
 	<thead>
 		<tr>
+			<th class="text-center">ID</th>
 			<th class="text-center">Recorded</th>
 			<th class="text-center">Updated</th>
 			<th class="text-center">Status</th>
@@ -17,6 +18,7 @@
 	<tbody>
 		{% for element in object_list %}
 			<tr>
+				<td class="text-center">{{ element.id }}</td>
 				<td class="text-center">{{ element.recorded|date:'Y-m-d H:i' }}</td>
 				<td class="text-center">{{ element.updated|date:'Y-m-d H:i' }}</td>
 				<td class="text-center">{{ element.verbose_status }}</td>

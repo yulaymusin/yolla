@@ -13,19 +13,19 @@
 </div>
 
 <h3>Content in English</h3>
-<div class="call-out info">{{ jumbotron.en_content|safe }}</div>
+<div class="call-out info" dir="ltr" lang="en">{{ jumbotron.en_content|safe }}</div>
 <h3>Content in Chinese Simplified</h3>
-<div class="call-out info">{{ jumbotron.zh_hans_content|safe }}</div>
+<div class="call-out info" dir="ltr" lang="zh-hans">{{ jumbotron.zh_hans_content|safe }}</div>
 <h3>Content in Chinese Traditional</h3>
-<div class="call-out info">{{ jumbotron.zh_hant_content|safe }}</div>
+<div class="call-out info" dir="ltr" lang="zh-hant">{{ jumbotron.zh_hant_content|safe }}</div>
 <h3>Content in Spanish</h3>
-<div class="call-out info">{{ jumbotron.es_content|safe }}</div>
+<div class="call-out info" dir="ltr" lang="es">{{ jumbotron.es_content|safe }}</div>
 <h3>Content in Arabic</h3>
-<div class="call-out info">{{ jumbotron.ar_content|safe }}</div>
+<div class="call-out info" dir="rtl" lang="ar">{{ jumbotron.ar_content|safe }}</div>
 <h3>Content in French</h3>
-<div class="call-out info">{{ jumbotron.fr_content|safe }}</div>
+<div class="call-out info" dir="ltr" lang="fr">{{ jumbotron.fr_content|safe }}</div>
 <h3>Content in Russian</h3>
-<div class="call-out info">{{ jumbotron.ru_content|safe }}</div>
+<div class="call-out info" dir="ltr" lang="ru">{{ jumbotron.ru_content|safe }}</div>
 
 <a href="{% url 'jumbotron:update' pk=jumbotron_id %}" class="btn info">Update this jumbotron</a>
 {% endblock %}

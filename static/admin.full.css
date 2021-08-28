@@ -1,0 +1,6 @@
+#loading_bar, #upload_btn, #upload_images_error {display: none;}
+#images input {float: left;}
+#images td:nth-child(3) {padding: 2px;}
+#images td:nth-child(4) {width: 90px;}
+#images td:nth-child(5) {width: 212px;}
+#images img {width: 155px;}

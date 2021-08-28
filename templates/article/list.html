@@ -4,6 +4,7 @@
 <table class="tbl bordered">
 	<thead>
 		<tr>
+			<th class="text-center">ID</th>
 			<th class="text-center">Mobile</th>
 			<th class="text-center">Status</th>
 			<th class="text-center">Show in page home</th>
@@ -16,6 +17,7 @@
 	<tbody>
 		{% for element in object_list %}
 			<tr>
+				<td class="text-center">{{ element.id }}</td>
 				<td class="text-center">{% if element.mobile is True %}&#10004;{% else %}&#10008;{% endif %} {{ element.mobile }}</td>
 				<td class="text-center">{{ element.verbose_status }}</td>
 				<td class="text-center">{% if element.page_home is True %}&#10004;{% else %}&#10008;{% endif %} {{ element.page_home }}</td>

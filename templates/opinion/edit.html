@@ -4,7 +4,7 @@
 {% include 'common/if_messages.html' %}
 {% include 'common/if_form.errors.html' %}
 <div class="breadcrumbs">
-	<a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a> / {{ opinion.topic_category_apex_name }} / {{ opinion.topic_category_name }} / {{ opinion.topic_name }}
+	<a href="{% url 'opinion:replies' %}"><bdi>{% trans 'Your replies' %}</bdi></a> / <bdi>{{ opinion.topic_category_apex_name }}</bdi> / <bdi>{{ opinion.topic_category_name }}</bdi> / <bdi>{{ opinion.topic_name }}</bdi>
 </div>
 {% if opinion.status != 4 %}
 	<div class="alert warning">
@@ -16,10 +16,10 @@
 	</div>
 {% endif %}
 <div class="panel">
-	<div class="panel-header">{{ opinion.publisher_name }}<small>{{ opinion.recorded }}</small></div>
+	<div class="panel-header"><bdi>{{ opinion.publisher_name }}</bdi><small>{{ opinion.recorded }}</small></div>
 	<div class="panel-body">
 		<blockquote class="text-muted">
-			<span>{% trans 'Reply to' %}: {{ opinion.apex_publisher_name }} <small>({{ opinion.apex_recorded }})</small></span>
+			<span>{% trans 'Reply to' %}: <bdi>{{ opinion.apex_publisher_name }}</bdi><small>({{ opinion.apex_recorded }})</small></span>
 			{{ opinion.apex_text|linebreaks }}
 		</blockquote>
 		{{ opinion.text|linebreaks }}

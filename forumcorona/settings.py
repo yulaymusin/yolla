@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'forumcorona.category',
     'forumcorona.topic',
     'forumcorona.opinion',
-    'forumcorona.search',
     'forumcorona.article',
     'forumcorona.jumbotron',
 ]
@@ -99,6 +98,7 @@ LANGUAGES = (
     ('fr', 'Français'),  # French
     ('ru', 'Русский'),  # Russian
 )
+RTL_LANGUAGES_CODES = ('ar',)
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True

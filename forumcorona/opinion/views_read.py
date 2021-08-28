@@ -80,7 +80,7 @@ def your_reply(request, pk):
                 topic_category_name=F('topic_id__category_id__' + lang('_name')), topic_name=F('topic_id__' + lang('_name')),
                 apex_recorded=F('apex_id__recorded'), apex_publisher_name=F('apex_id__publisher_id__name'),
                 apex_text=F('apex_id__' + lang('_text')),
-                l1_text=F(lang('_text')), l2_text=F(l2 + '_text'),
+                l1_text=F(lang('_text')), l2_text=F(l2.replace('-', '_') + '_text'),
             ),
             pk=pk
         )
@@ -143,7 +143,7 @@ class Topic(mix.ListViewContextPaginated, ListView):
             opinions_values = qs.values(
                 'id', 'recorded', publisher_name=F('publisher_id__name'), apex_recorded=F('apex_id__recorded'),
                 apex_publisher_name=F('apex_id__publisher_id__name'), apex_text=F('apex_id__' + lang('_text')),
-                l1_text=F(lang('_text')), l2_text=F(self.l2+'_text'),
+                l1_text=F(lang('_text')), l2_text=F(self.l2.replace('-', '_') + '_text'),
             )
         else:
             opinions_values = qs.values(
