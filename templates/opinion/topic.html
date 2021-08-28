@@ -36,7 +36,7 @@
 	{% endfor %}
 {% else %}
 	{% for element in object_list %}
-		<div class="panel">
+		<div class="panel" itemscope itemtype="https://schema.org/Comment">
 			<div class="panel-header"><bdi>{{ element.publisher_name }}</bdi><small>{{ element.recorded }}</small>
 				<div class="panel-btn-area clearfix">
 					<a href="{% url 'opinion:reply' reply_to_opinion_pk=element.id %}" class="btn primary glow">{% trans "Reply" %}</a>
@@ -49,7 +49,7 @@
 						{{ element.apex_text|linebreaks }}
 					</blockquote>
 				{% endif %}
-				{{ element.l1_text|linebreaks }}
+				<div itemprop="text">{{ element.l1_text|linebreaks }}</div>
 				{% if element.documents %}
 					<div class="line"></div>
 					<p><b>{% trans "Documents" %}</b> (<a href="{% url 'opinion:zip_documents' opinion_pk=element.id %}" target="_blank">{% trans "Download documents in ZIP-archive" %}</a>)</p>

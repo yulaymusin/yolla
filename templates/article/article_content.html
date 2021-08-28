@@ -15,6 +15,6 @@
 			</div>
 		</div>
 	{% else %}
-		{{ article.l1_content|safe }}
+		<div itemprop="articleBody" itemscope itemtype="https://schema.org/Article">{{ article.l1_content|safe }}</div>
 	{% endif %}
 </div>
