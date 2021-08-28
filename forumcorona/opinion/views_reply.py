@@ -72,7 +72,6 @@ class Reply(LoginRequiredMixin, mix.MsgInFormValid, FormView):
 
             en_text=cd.get('en_text'),
             zh_hans_text=cd.get('zh_hans_text'),
-            zh_hant_text=cd.get('zh_hant_text'),
             es_text=cd.get('es_text'),
             ar_text=cd.get('ar_text'),
             fr_text=cd.get('fr_text'),
@@ -96,7 +95,7 @@ class Edit(LoginRequiredMixin, mix.MsgInFormValid, FormView):
             m.Opinion.objects.values(
                 'recorded',  # panel
                 'status',  # def form_valid
-                'en_text', 'zh_hans_text', 'zh_hant_text', 'es_text', 'ar_text', 'fr_text', 'ru_text',  # form
+                'en_text', 'zh_hans_text', 'es_text', 'ar_text', 'fr_text', 'ru_text',  # form
                 publisher_name=F('publisher_id__name'),  # panel
                 topic_category_apex_name=F('topic_id__category_id__apex_id__'+lang('_name')),  # breadcrumbs
                 topic_category_name=F('topic_id__category_id__'+lang('_name')),  # breadcrumbs
@@ -112,7 +111,6 @@ class Edit(LoginRequiredMixin, mix.MsgInFormValid, FormView):
         initial.update({
             'en_text': self.opinion_values['en_text'],
             'zh_hans_text': self.opinion_values['zh_hans_text'],
-            'zh_hant_text': self.opinion_values['zh_hant_text'],
             'es_text': self.opinion_values['es_text'],
             'ar_text': self.opinion_values['ar_text'],
             'fr_text': self.opinion_values['fr_text'],
@@ -140,7 +138,6 @@ class Edit(LoginRequiredMixin, mix.MsgInFormValid, FormView):
         m.Opinion.objects.filter(pk=self.kwargs.get('pk')).update(
             en_text=cd.get('en_text'),
             zh_hans_text=cd.get('zh_hans_text'),
-            zh_hant_text=cd.get('zh_hant_text'),
             es_text=cd.get('es_text'),
             ar_text=cd.get('ar_text'),
             fr_text=cd.get('fr_text'),

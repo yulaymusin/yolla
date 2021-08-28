@@ -25,7 +25,7 @@ class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ListViewContextPa
 class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, CreateView):
     model = m.Category
     fields = ('order_by_this', 'slug', 'apex', 'show_in_top_nav',
-              'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
+              'en_name', 'zh_hans_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
     template_name = 'category/form.html'
     success_url = reverse_lazy('category:list')
     success_message = 'New category: done.'
@@ -37,7 +37,7 @@ class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, Cr
 class Update(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, UpdateView):
     model = m.Category
     fields = ('order_by_this', 'slug', 'apex', 'show_in_top_nav',
-              'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
+              'en_name', 'zh_hans_name', 'es_name', 'ar_name', 'fr_name', 'ru_name')
     template_name = 'category/form.html'
     success_url = reverse_lazy('category:list')
     success_message = 'Category updated.'

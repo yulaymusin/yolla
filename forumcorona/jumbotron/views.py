@@ -34,7 +34,7 @@ class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ListViewContextPa
 class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, mix.TopicsCategoriesContext, CreateView):
     model = m.Jumbotron
     fields = ('page_home', 'category', 'topic',
-              'en_content', 'zh_hans_content', 'zh_hant_content', 'es_content', 'ar_content', 'fr_content', 'ru_content',)
+              'en_content', 'zh_hans_content', 'es_content', 'ar_content', 'fr_content', 'ru_content',)
     template_name = 'common/form_article_jumbotron.html'
     success_message = 'New jumbotron: done.'
     extra_context = {
@@ -48,7 +48,7 @@ class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, mi
 class Update(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, mix.TopicsCategoriesContext, UpdateView):
     model = m.Jumbotron
     fields = ('page_home', 'category', 'topic',
-              'en_content', 'zh_hans_content', 'zh_hant_content', 'es_content', 'ar_content', 'fr_content', 'ru_content',)
+              'en_content', 'zh_hans_content', 'es_content', 'ar_content', 'fr_content', 'ru_content',)
     template_name = 'common/form_article_jumbotron.html'
     success_message = 'Jumbotron updated.'
     extra_context = {
@@ -64,7 +64,7 @@ def read(request, pk):
     jumbotron_values = get_object_or_404(
         m.Jumbotron.objects.values(
             'page_home',
-            'en_content', 'zh_hans_content', 'zh_hant_content', 'es_content', 'ar_content', 'fr_content', 'ru_content',
+            'en_content', 'zh_hans_content', 'es_content', 'ar_content', 'fr_content', 'ru_content',
             category_en_name=F('category_id__en_name'), topic_en_name=F('topic_id__en_name'),
         ),
         pk=pk

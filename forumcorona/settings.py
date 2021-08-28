@@ -91,8 +91,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('en', 'English'),  # English
-    ('zh-hans', '简体中文'),  # Chinese Simplified
-    ('zh-hant', '繁體中文'),  # Chinese Traditional
+    ('zh-hans', '简体中文'),  # Chinese (Simplified only, without "('zh-hant', '繁體中文'),  # Chinese Traditional")
     ('es', 'Español'),  # Spanish
     ('ar', 'العربيّة'),  # Arabic
     ('fr', 'Français'),  # French

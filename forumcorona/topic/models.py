@@ -17,16 +17,14 @@ class Topic(models.Model):
     category = models.ForeignKey(Category, models.PROTECT)
 
     en_name = models.CharField('Name in English', max_length=200)
-    zh_hans_name = models.CharField('Name in Chinese Simplified', max_length=200)
-    zh_hant_name = models.CharField('Name in Chinese Traditional', max_length=200)
+    zh_hans_name = models.CharField('Name in Chinese', max_length=200)
     es_name = models.CharField('Name in Spanish', max_length=200)
     ar_name = models.CharField('Name in Arabic', max_length=200)
     fr_name = models.CharField('Name in French', max_length=200)
     ru_name = models.CharField('Name in Russian', max_length=200)
 
     en_description = models.CharField('Description in English', max_length=500)
-    zh_hans_description = models.CharField('Description in Chinese Simplified', max_length=500)
-    zh_hant_description = models.CharField('Description in Chinese Traditional', max_length=500)
+    zh_hans_description = models.CharField('Description in Chinese', max_length=500)
     es_description = models.CharField('Description in Spanish', max_length=500)
     ar_description = models.CharField('Description in Arabic', max_length=500)
     fr_description = models.CharField('Description in French', max_length=500)

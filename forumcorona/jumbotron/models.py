@@ -16,8 +16,7 @@ class Jumbotron(models.Model):
     topic = models.ForeignKey(Topic, models.PROTECT, null=True, blank=True)
 
     en_content = models.CharField('Content in English', max_length=200)
-    zh_hans_content = models.CharField('Content in Chinese Simplified', max_length=200)
-    zh_hant_content = models.CharField('Content in Chinese Traditional', max_length=200)
+    zh_hans_content = models.CharField('Content in Chinese', max_length=200)
     es_content = models.CharField('Content in Spanish', max_length=200)
     ar_content = models.CharField('Content in Arabic', max_length=200)
     fr_content = models.CharField('Content in French', max_length=200)

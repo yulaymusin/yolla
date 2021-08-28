@@ -31,8 +31,7 @@ class Article(models.Model):
     topic = models.ForeignKey(Topic, models.PROTECT, null=True, blank=True)
 
     en_content = models.TextField('Content in English', blank=True)
-    zh_hans_content = models.TextField('Content in Chinese Simplified', blank=True)
-    zh_hant_content = models.TextField('Content in Chinese Traditional', blank=True)
+    zh_hans_content = models.TextField('Content in Chinese', blank=True)
     es_content = models.TextField('Content in Spanish', blank=True)
     ar_content = models.TextField('Content in Arabic', blank=True)
     fr_content = models.TextField('Content in French', blank=True)

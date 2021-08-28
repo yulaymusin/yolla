@@ -98,7 +98,7 @@ class List(LoginRequiredMixin, mix.StaffRequiredMixin, mix.ListViewContextPagina
 class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, CreateView):
     model = m.Opinion
     fields = ('status',
-              'en_text', 'zh_hans_text', 'zh_hant_text', 'es_text', 'ar_text', 'fr_text', 'ru_text')
+              'en_text', 'zh_hans_text', 'es_text', 'ar_text', 'fr_text', 'ru_text')
     template_name = 'opinion/form.html'
     success_message = 'New opinion: done.'
     topic_values = None
@@ -134,7 +134,7 @@ class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, Cr
 class Update(LoginRequiredMixin, mix.StaffRequiredMixin, mix.MsgInFormValid, UpdateView):
     model = m.Opinion
     fields = ('status', 'reason_for_rejection',
-              'en_text', 'zh_hans_text', 'zh_hant_text', 'es_text', 'ar_text', 'fr_text', 'ru_text')
+              'en_text', 'zh_hans_text', 'es_text', 'ar_text', 'fr_text', 'ru_text')
     template_name = 'opinion/form.html'
     success_url = reverse_lazy('opinion:list')
     success_message = 'Opinion updated.'
@@ -174,7 +174,7 @@ def read(request, pk):
     opinion_values = get_object_or_404(
         m.Opinion.objects.values(
             'recorded', 'updated', 'status', 'reason_for_rejection',
-            'en_text', 'zh_hans_text', 'zh_hant_text', 'es_text', 'ar_text', 'fr_text', 'ru_text',
+            'en_text', 'zh_hans_text', 'es_text', 'ar_text', 'fr_text', 'ru_text',
             publisher_name=F('publisher_id__name'),
             topic_category_apex_en_name=F('topic_id__category_id__apex_id__en_name'),
             topic_category_en_name=F('topic_id__category_id__en_name'),

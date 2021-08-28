@@ -36,9 +36,8 @@ class List(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.ListViewContextPa
 class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, CreateView):
     model = m.Topic
     fields = ('slug', 'published', 'category',
-              'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name',
-              'en_description', 'zh_hans_description', 'zh_hant_description', 'es_description', 'ar_description',
-              'fr_description', 'ru_description')
+              'en_name', 'zh_hans_name', 'es_name', 'ar_name', 'fr_name', 'ru_name',
+              'en_description', 'zh_hans_description', 'es_description', 'ar_description', 'fr_description', 'ru_description')
     template_name = 'topic/form.html'
     success_url = reverse_lazy('topic:list')
     success_message = 'New topic: done.'
@@ -50,9 +49,8 @@ class New(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, Cr
 class Update(LoginRequiredMixin, mix.SuperUserRequiredMixin, mix.MsgInFormValid, UpdateView):
     model = m.Topic
     fields = ('slug', 'published', 'category',
-              'en_name', 'zh_hans_name', 'zh_hant_name', 'es_name', 'ar_name', 'fr_name', 'ru_name',
-              'en_description', 'zh_hans_description', 'zh_hant_description', 'es_description', 'ar_description',
-              'fr_description', 'ru_description')
+              'en_name', 'zh_hans_name', 'es_name', 'ar_name', 'fr_name', 'ru_name',
+              'en_description', 'zh_hans_description', 'es_description', 'ar_description', 'fr_description', 'ru_description')
     template_name = 'topic/form.html'
     success_url = reverse_lazy('topic:list')
     success_message = 'Topic updated.'

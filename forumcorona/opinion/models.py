@@ -51,8 +51,7 @@ class Opinion(models.Model):
     apex_language = models.CharField(max_length=20)
 
     en_text = models.TextField('Text in English', blank=True)
-    zh_hans_text = models.TextField('Text in Chinese Simplified', blank=True)
-    zh_hant_text = models.TextField('Text in Chinese Traditional', blank=True)
+    zh_hans_text = models.TextField('Text in Chinese', blank=True)
     es_text = models.TextField('Text in Spanish', blank=True)
     ar_text = models.TextField('Text in Arabic', blank=True)
     fr_text = models.TextField('Text in French', blank=True)
