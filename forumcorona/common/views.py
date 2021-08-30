@@ -9,8 +9,6 @@ from forumcorona.jumbotron.models import get_jumbotron_for_context
 
 def categories_with_topics(request):
     categories_values = Category.objects.all().values('id', 'slug', 'apex', lang('_name'))
-    if not categories_values:
-        return render(request, 'start_page.html', {'categories_topics': {}})
     # categories_topics = {
     #     1: ('First category', {
     #         3: ('Subcategory 1 of first category', [
@@ -22,39 +20,39 @@ def categories_with_topics(request):
     #     }),
     #     2: ('Second category', {...}),
     # }
-    the_categories = {}
-    categories_pre_tree = {}
-    for category in categories_values:
-        # the_categories[category['id']] = category
-        the_categories[category['id']] = {
-            'id': category['id'],
-            'slug': category['slug'],
-            'apex': category['apex'],
-            'name': category[lang('_name')],
-        }
-        categories_pre_tree[category['apex']] = {}
-    for key, item in the_categories.items():
-        categories_pre_tree[item['apex']][item['id']] = item
-
-    categories_of_topics = []
-    for key1, item1 in categories_pre_tree[None].items():
-        try:
-            for key2, item2 in categories_pre_tree[key1].items():
-                categories_of_topics.append(key2)
-        except KeyError:
-            pass  # (key1, item1): categories with apex=None
-
-    topics = get_topics_grouped_by_category_id(categories_of_topics)
-
     categories_topics = {}
-    for key1, item1 in categories_pre_tree[None].items():
-        subcategory = {}
-        try:
-            for key2, item2 in categories_pre_tree[key1].items():
-                subcategory[key2] = (item2, topics[key2])
-        except KeyError:
-            pass  # (key1, item1): categories with apex=None
-        categories_topics[key1] = (item1, subcategory)
+    if categories_values:
+        the_categories = {}
+        categories_pre_tree = {}
+        for category in categories_values:
+            the_categories[category['id']] = {
+                'id': category['id'],
+                'slug': category['slug'],
+                'apex': category['apex'],
+                'name': category[lang('_name')],
+            }
+            categories_pre_tree[category['apex']] = {}
+        for key, item in the_categories.items():
+            categories_pre_tree[item['apex']][item['id']] = item
+
+        categories_of_topics = []
+        for key1, item1 in categories_pre_tree[None].items():
+            try:
+                for key2, item2 in categories_pre_tree[key1].items():
+                    categories_of_topics.append(key2)
+            except KeyError:
+                pass  # (key1, item1): categories with apex=None
+
+        topics = get_topics_grouped_by_category_id(categories_of_topics)
+
+        for key1, item1 in categories_pre_tree[None].items():
+            subcategory = {}
+            try:
+                for key2, item2 in categories_pre_tree[key1].items():
+                    subcategory[key2] = (item2, topics[key2])
+            except KeyError:
+                pass  # (key1, item1): categories with apex=None
+            categories_topics[key1] = (item1, subcategory)
     return render(request, 'common/page_home.html', {
         'label': 'Forumcorona.net',
         'h1': _('Important discussions'),

@@ -1,10 +1,10 @@
 import os
 from pathlib import Path
 from forumcorona.settings_production import SECRET_KEY, DATABASES, SERVER_EMAIL, DEFAULT_FROM_EMAIL, ADMINS, MANAGERS, \
-    EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_SSL, EMAIL_PORT, PROTOCOL, DOMAIN, SITE_NAME
+    EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, EMAIL_PORT, PROTOCOL, DOMAIN, SITE_NAME
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 if DEBUG is False:
     ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
