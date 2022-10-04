@@ -1,5 +1,5 @@
 """
-WSGI config for forumcorona project.
+WSGI config for yolla project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'forumcorona.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yolla.settings')
 
 application = get_wsgi_application()

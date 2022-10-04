@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.db.models import F
-from forumcorona.topic.models import Topic
+from yolla.topic.models import Topic
 
 
 class ListViewContextPaginated:

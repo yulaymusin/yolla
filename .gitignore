@@ -5,6 +5,6 @@
 __pycache__/
 docs/
 email-debug/
-forumcorona/settings_production.py
+yolla/settings_production.py
 media/
 static/img/

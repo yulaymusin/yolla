@@ -1,7 +1,7 @@
 from django.db import models
-from forumcorona.common import sql_custom as sql
-from forumcorona.common.utils import lang
-from forumcorona.category.models import Category
+from yolla.common import sql_custom as sql
+from yolla.common.utils import lang
+from yolla.category.models import Category
 
 
 class Topic(models.Model):

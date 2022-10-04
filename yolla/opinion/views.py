@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import ListView, CreateView, UpdateView
-from forumcorona.common import mixins as mix
-from forumcorona.common.utils import login_and_staff_required
+from yolla.common import mixins as mix
+from yolla.common.utils import login_and_staff_required
 from . import models as m
 
 

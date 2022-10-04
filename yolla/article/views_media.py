@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from forumcorona.common.utils import get_hash_md5, login_and_superuser_required
+from yolla.common.utils import get_hash_md5, login_and_superuser_required
 from . import models as m
 
 

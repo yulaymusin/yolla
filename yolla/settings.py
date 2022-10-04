@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from forumcorona.settings_production import SECRET_KEY, DATABASES, SERVER_EMAIL, DEFAULT_FROM_EMAIL, ADMINS, MANAGERS, \
+from yolla.settings_production import SECRET_KEY, DATABASES, SERVER_EMAIL, DEFAULT_FROM_EMAIL, ADMINS, MANAGERS, \
     EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, EMAIL_PORT, PROTOCOL, DOMAIN, SITE_NAME
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +20,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'forumcorona.participant',
-    'forumcorona.common',
-    'forumcorona.category',
-    'forumcorona.topic',
-    'forumcorona.opinion',
-    'forumcorona.article',
-    'forumcorona.jumbotron',
+    'yolla.participant',
+    'yolla.common',
+    'yolla.category',
+    'yolla.topic',
+    'yolla.opinion',
+    'yolla.article',
+    'yolla.jumbotron',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -38,10 +38,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django.middleware.locale.LocaleMiddleware',
-    'forumcorona.common.middlewares.TimezoneMiddleware',
-    'forumcorona.common.middlewares.LanguageMiddleware',
+    'yolla.common.middlewares.TimezoneMiddleware',
+    'yolla.common.middlewares.LanguageMiddleware',
 ]
-ROOT_URLCONF = 'forumcorona.urls'
+ROOT_URLCONF = 'yolla.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -60,20 +60,20 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = 'forumcorona.wsgi.application'
+WSGI_APPLICATION = 'yolla.wsgi.application'
 
 # Database
 if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'forumcorona',
+            'NAME': 'yolla',
             'USER': 'postgres',
             'PASSWORD': '123',
             'HOST': 'localhost',
             'PORT': '54321',
             'TEST': {
-                'NAME': 'testforumcorona',
+                'NAME': 'testyolla',
             },
         }
     }

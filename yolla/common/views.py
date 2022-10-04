@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
-from forumcorona.common.utils import lang
-from forumcorona.category.models import Category
-from forumcorona.topic.models import get_topics_grouped_by_category_id
-from forumcorona.article.models import get_article_for_context
-from forumcorona.jumbotron.models import get_jumbotron_for_context
+from yolla.common.utils import lang
+from yolla.category.models import Category
+from yolla.topic.models import get_topics_grouped_by_category_id
+from yolla.article.models import get_article_for_context
+from yolla.jumbotron.models import get_jumbotron_for_context
 
 
 def categories_with_topics(request):
@@ -54,7 +54,7 @@ def categories_with_topics(request):
                 pass  # (key1, item1): categories with apex=None
             categories_topics[key1] = (item1, subcategory)
     return render(request, 'common/page_home.html', {
-        'label': 'Forumcorona.net',
+        'label': 'Yolla',
         'h1': _('Important discussions'),
         'categories_topics': categories_topics,
         'page_home': True,

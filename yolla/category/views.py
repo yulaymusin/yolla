@@ -3,11 +3,11 @@ from django.db.models import F
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
-from forumcorona.common import mixins as mix
-from forumcorona.common.utils import lang
-from forumcorona.topic.models import get_topics_grouped_by_category_id
-from forumcorona.article.models import get_article_for_context
-from forumcorona.jumbotron.models import get_jumbotron_for_context
+from yolla.common import mixins as mix
+from yolla.common.utils import lang
+from yolla.topic.models import get_topics_grouped_by_category_id
+from yolla.article.models import get_article_for_context
+from yolla.jumbotron.models import get_jumbotron_for_context
 from . import models as m
 
 

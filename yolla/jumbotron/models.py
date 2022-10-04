@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.db import models
 from django.db.models import F
-from forumcorona.common.utils import lang
-from forumcorona.category.models import Category
-from forumcorona.topic.models import Topic
+from yolla.common.utils import lang
+from yolla.category.models import Category
+from yolla.topic.models import Topic
 
 
 class Jumbotron(models.Model):

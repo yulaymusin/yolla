@@ -1,7 +1,7 @@
 from django import template
 from django.db.models import F
-from forumcorona.category.models import Category
-from forumcorona.common.utils import lang
+from yolla.category.models import Category
+from yolla.common.utils import lang
 
 register = template.Library()
 

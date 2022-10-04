@@ -9,7 +9,7 @@ from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
-from forumcorona.common.utils import lang, get_hash_md5
+from yolla.common.utils import lang, get_hash_md5
 from . import models as m
 
 

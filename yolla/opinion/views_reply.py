@@ -6,8 +6,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import FormView
-from forumcorona.common import mixins as mix
-from forumcorona.common.utils import lang
+from yolla.common import mixins as mix
+from yolla.common.utils import lang
 from . import forms as f
 from . import models as m
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from forumcorona.participant.models import Participant
-from forumcorona.topic.models import Topic
+from yolla.participant.models import Participant
+from yolla.topic.models import Topic
 
 
 opinion_statuses = (

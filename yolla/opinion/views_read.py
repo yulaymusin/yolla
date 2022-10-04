@@ -5,10 +5,10 @@ from django.db.models import F
 from django.shortcuts import get_object_or_404, render
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView
-from forumcorona.common import mixins as mix
-from forumcorona.common.utils import lang
-from forumcorona.article.models import get_article_for_context
-from forumcorona.jumbotron.models import get_jumbotron_for_context
+from yolla.common import mixins as mix
+from yolla.common.utils import lang
+from yolla.article.models import get_article_for_context
+from yolla.jumbotron.models import get_jumbotron_for_context
 from .views import FilterByTopicAndStatusMixin
 from . import models as m
 
