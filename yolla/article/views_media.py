@@ -77,7 +77,7 @@ def delete_image(request, media_pk):
         else:
             os.remove(image_path)
         messages.info(request, 'Image deleted.')
-        return redirect(reverse_lazy('article:upload_images') + '?list=1' if request.GET.get('list') == '1' else '')
+        return redirect(reverse_lazy('article:upload_images'))  # + '?list=1' if request.GET.get('list') == '1' else '')
 
     media_values = get_object_or_404(
         m.ArticleMedia.objects.values('image', 'size'),

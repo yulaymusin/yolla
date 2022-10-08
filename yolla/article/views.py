@@ -75,6 +75,7 @@ def read(request, pk):
         'label': 'Read article',
         'article_id': pk,
         'article': {
+            'mobile': article_values['mobile'],
             'page_home': article_values['page_home'],
             'category_en_name': article_values['category_en_name'],
             'topic_en_name': article_values['topic_en_name'],
