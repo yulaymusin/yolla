@@ -12,7 +12,7 @@ class SignUpForm(UserCreationForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = m.Participant
-        fields = ('name', 'email', 'time_zone', 'l1', 'l2', 'about')
+        fields = ('name', 'email', 'time_zone', 'about')
 
     def __init__(self, time_zones, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -5,7 +5,7 @@ from django.urls import include, re_path
 from yolla.common import error_handlers
 
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
     re_path(r'^', include('yolla.common.urls')),
     re_path(r'^participants/', include('yolla.participant.urls')),
     re_path(r'^categories/', include('yolla.category.urls', namespace='category')),
@@ -13,7 +13,7 @@ urlpatterns = i18n_patterns(
     re_path(r'^opinions/', include('yolla.opinion.urls', namespace='opinion')),
     re_path(r'^articles/', include('yolla.article.urls', namespace='article')),
     re_path(r'^jumbotrons/', include('yolla.jumbotron.urls', namespace='jumbotron')),
-)
+]
 
 handler403 = error_handlers.status_code_403
 handler404 = error_handlers.status_code_404
