@@ -33,6 +33,6 @@ class Participant(AbstractUser):
     )
 
     time_zone = models.CharField(_('Time zone'), max_length=50, default='UTC')
-    l1 = models.CharField(_('Primary language'), max_length=20, choices=settings.LANGUAGES, default='en')
+    l1 = models.CharField(_('Primary language'), max_length=20, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE)
     l2 = models.CharField(_('Secondary language'), max_length=20, choices=settings.LANGUAGES, blank=True)
     about = models.TextField(_('About'), default='', blank=True)
