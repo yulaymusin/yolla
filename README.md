@@ -39,6 +39,14 @@ CREATE DATABASE yolla;
 psql yolla < docs/yolla_sample_data.pg_dump postgres -h 127.0.0.1 -p 54321
 ```
 enter 123
+### Internationalization
+```commandline
+python manage.py compilemessages -l ar
+python manage.py compilemessages -l es
+python manage.py compilemessages -l fr
+python manage.py compilemessages -l ru
+python manage.py compilemessages -l zh_Hans
+```
 ### Runserver with DEBUG = True
 ```commandline
 sed -i 's/DEBUG = False/DEBUG = True/' yolla/settings.py
