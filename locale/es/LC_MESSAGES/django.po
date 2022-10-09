@@ -241,3 +241,6 @@ msgstr "¿Sin nombre de usuario y contraseña?"
 
 msgid "Already have a username and password?"
 msgstr "¿Ya tienes un nombre de usuario y una contraseña?"
+
+msgid "Cancel"
+msgstr "Cancelar"

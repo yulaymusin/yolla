@@ -241,3 +241,6 @@ msgstr "没有用户名和密码？"
 
 msgid "Already have a username and password?"
 msgstr "已经有用户名和密码？"
+
+msgid "Cancel"
+msgstr "取消"

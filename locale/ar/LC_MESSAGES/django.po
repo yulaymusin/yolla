@@ -240,3 +240,6 @@ msgstr "لا اسم المستخدم وكلمة المرور؟"
 
 msgid "Already have a username and password?"
 msgstr "هل لديك اسم مستخدم وكلمة مرور بالفعل؟"
+
+msgid "Cancel"
+msgstr "ألغ"

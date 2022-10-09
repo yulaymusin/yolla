@@ -241,3 +241,6 @@ msgstr "Нет логина и пароля?"
 
 msgid "Already have a username and password?"
 msgstr "У вас уже есть логин и пароль?"
+
+msgid "Cancel"
+msgstr "Отмена"
