@@ -35,13 +35,6 @@
 					{% else %}
 						{{ jumbotron.l1_content|safe }}
 					{% endif %}
-					{% if user.is_authenticated is False and page_home is True %}
-						<div class="rounded-more-corners">
-							{% for lang in languages %}
-								<a href="/{{ lang.0 }}/" class="btn">{{ lang.1 }}</a>
-							{% endfor %}
-						</div>
-					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -60,9 +53,6 @@
 <footer class="text-center">
 	<div class="line"></div>
 	{% if user.is_authenticated is False %}
-		{% for lang in languages %}
-			<a href="{{ lang.0|language_in_url:request.get_full_path }}">{{ lang.1 }}</a>
-		{% endfor %}
 	{% else %}
 		<a href="{% url 'opinion:replies' %}">{% trans 'Your replies' %}</a>
 		<a href="{% url 'participant:password' %}">{% trans 'Change password' %}</a>
